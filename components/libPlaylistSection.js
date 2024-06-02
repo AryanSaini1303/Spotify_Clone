@@ -2,7 +2,7 @@ import styles from "./libPlaylistSection.module.css";
 import Link from "next/link";
 
 export default function LibPlaylistSection({ minimize, playlists, playlistPosters }) {
-  console.log(playlistPosters);
+  // console.log(playlistPosters);
   return (
     <div className={styles.container} style={minimize ? { margin: "0 auto"} : null} >
       {playlists.map((playlist,index) => {
