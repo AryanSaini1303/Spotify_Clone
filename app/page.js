@@ -13,12 +13,12 @@ export default function HomePage() {
   }
   return (
     <>
-      <div className={minLib?"minMainPageContainer":"mainPageContainer"}>
-        <NavSection className="navSection" minimize={minLib}/>
-        <LibSection className="libSection" onClick={handleMinLib} minimize={minLib}/>
+      <div className="mainPageContainer">
+        <NavSection className={!minLib?"navSection":"minNavSection"} minimize={minLib}/>
+        <LibSection className={!minLib?"libSection":"minLibSection"} onClick={handleMinLib} minimize={minLib}/>
         <PlayerSection className="playerSection"/>
-        <MainSection className="mainSection"/>
-        <InfoSection className="infoSection"/>
+        <MainSection className={!minLib?"mainSection":"minMainSection"}/>
+        <InfoSection className={!minLib?"infoSection":"minInfoSection"}/>
       </div>
     </>
   );
