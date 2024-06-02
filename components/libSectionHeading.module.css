@@ -1,0 +1,37 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+}
+.container *{
+    text-decoration: none;
+}
+.heading{
+    transition: 0.3s all ease-in-out;
+    color: rgb(122,122,122);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+}
+.heading:hover{
+    color: white;
+}
+.addPlaylist{
+    color: rgb(122,122,122);
+    transition: 0.3s all ease-in-out;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+.addPlaylist:hover{
+    color: white;
+    background-color: rgba(43, 43, 43, 0.377);
+}
+.heading h4{
+    margin:0;
+}

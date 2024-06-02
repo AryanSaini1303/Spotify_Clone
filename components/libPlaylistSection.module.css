@@ -1,0 +1,36 @@
+.playlist img{
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 5px;
+}
+.playlist{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    transition: 0.2s all ease-in-out;
+    padding: 0.5rem;
+}
+.playlist:hover{
+    background-color: #29292969;
+}
+.playlistInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.playlistInfo *{
+    margin: 0;
+    font-weight: 500;
+}
+.playlistInfo h5{
+    color: #807f7f;
+}
+.playlist:active{
+    background-color: rgba(0, 0, 0, 0.808);
+}
+.container{
+    padding: 0.5rem;
+}
