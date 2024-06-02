@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model Playlist {
+  id          String     @id @default(cuid()) // Unique identifier with default value
+  name        String     // Name of the playlist
+  description String?    // Optional description of the playlist
+  createdAt   DateTime   @default(now()) // Creation timestamp
+  updatedAt   DateTime   @updatedAt // Updated timestamp
+  songs       PlaylistSong[] // Relation to PlaylistSong
+
+  @@map(name: "playlists") // Map this model to the "playlists" table in the database
+}
+
+model Song {
+  id          String     @id @default(cuid()) // Unique identifier with default value
+  title       String     // Title of the song
+  artist      String     // Artist of the song
+  poster      String?     // Poster of the song
+  duration    Int        // Duration of the song in seconds
+  playlists   PlaylistSong[] // Relation to PlaylistSong
+
+  @@map(name: "songs") // Map this model to the "songs" table in the database
+}
+
+model PlaylistSong {
+  playlistId String
+  songId     String
+  poster     String?
+
+  playlist Playlist @relation(fields: [playlistId], references: [id], onDelete: Cascade)
+  song     Song     @relation(fields: [songId], references: [id], onDelete: Cascade)
+
+  @@id([playlistId, songId])
+}

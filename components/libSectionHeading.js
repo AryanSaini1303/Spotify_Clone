@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function LibSectionHeading({ onClick, minimize }) {
   return (
     <header className={styles.container} style={minimize?{margin:"0 auto"}:null}>
-      <Link href="/" className={styles.heading} onClick={onClick}>
+      <div className={styles.heading} onClick={onClick}>
         {!minimize ? (
           <svg
             viewBox="0 0 512 512"
@@ -61,7 +61,7 @@ export default function LibSectionHeading({ onClick, minimize }) {
         </svg>
         )}
         {!minimize && <h4>Your Library</h4>}
-      </Link>
+      </div>
         {!minimize &&
           <Link href="/" className={styles.addPlaylist}>
             <svg

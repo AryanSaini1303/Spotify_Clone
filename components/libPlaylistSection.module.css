@@ -1,6 +1,6 @@
 .playlist img{
-    height: 3.5rem;
-    width: 3.5rem;
+    height: 3.2rem;
+    width: 3.2rem;
     border-radius: 5px;
 }
 .playlist{
@@ -32,5 +32,6 @@
     background-color: rgba(0, 0, 0, 0.808);
 }
 .container{
-    padding: 0.5rem;
+    padding: 0.5rem 0;
+
 }
