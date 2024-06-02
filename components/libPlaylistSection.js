@@ -13,7 +13,7 @@ export default function LibPlaylistSection({ minimize, playlists, playlistPoster
               <div className={styles.playlistInfo}>
                 <h4 className="Name">{playlist.name}</h4>
                 <h5 className="otherInfo">
-                  Playlist . <span>{num[index]} Songs</span>
+                  Playlist | <span>{num[index]} Songs</span>
                 </h5>
               </div>
             )}
