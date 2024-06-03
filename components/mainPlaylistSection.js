@@ -20,7 +20,7 @@ export default function MainPlaylistSection({ playlists, playlistPosters, sendDa
         return (
           <Link
             key={playlist.id}
-            href=""
+            href={`/playlist/${playlist.id}`}
             className={styles.playlist}
             onMouseEnter={() => handleMouseEnter(playlist.id)}
             onMouseLeave={() => handleMouseLeave(playlist.id)}

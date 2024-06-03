@@ -7,7 +7,7 @@ export default function LibPlaylistSection({ minimize, playlists, playlistPoster
     <div className={styles.container} style={minimize ? { margin: "0 auto"} : null} >
       {playlists.map((playlist,index) => {
         return (
-          <Link href="/" className={styles.playlist} key={playlist.id}>
+          <Link href={`/playlist/${playlist.id}`} className={styles.playlist} key={playlist.id}>
             <img src={playlistPosters[index]} alt="" />
             {!minimize && (
               <div className={styles.playlistInfo}>
