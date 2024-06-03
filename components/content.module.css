@@ -55,6 +55,8 @@
     background-color: #121212;
     border-radius: 10px;
     color:white;
+    padding: 1rem 1.5rem;
+    position: relative;
 }
 .infoSection{
     grid-area:1/4/3/4;
@@ -67,6 +69,8 @@
     background-color: #121212;
     border-radius: 10px;
     color:white;
+    padding: 1rem 1.5rem;
+    position: relative;
 }
 .minInfoSection{
     grid-area:1/4/3/5;

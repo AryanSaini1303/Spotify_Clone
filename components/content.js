@@ -17,7 +17,7 @@ export default function Content({playlists, playlistPosters, num}) {
       <LibSection className={!minLib ? styles.libSection : styles.minLibSection} onClick={handleMinLib} minimize={minLib} playlists={playlists} playlistPosters={playlistPosters} num={num}/>
       <PlayerSection className={styles.playerSection} />
       <InfoSection className={!minLib ? styles.infoSection : styles.minInfoSection} />
-      <MainSection className={!minLib ? styles.mainSection : styles.minMainSection} />
+      <MainSection className={!minLib ? styles.mainSection : styles.minMainSection} playlists={playlists} playlistPosters={playlistPosters}/>
     </div>
   );
 }

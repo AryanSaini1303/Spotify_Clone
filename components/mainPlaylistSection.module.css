@@ -1,0 +1,68 @@
+.playlist img{
+    height: 4rem;
+    width: 4rem;
+}
+.playlist{
+    display: flex;
+    gap: 0.7rem;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #272727;
+    transition: 0.3s all ease-in-out;
+    text-decoration: none;
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 18rem;
+}
+.playlist h4{
+    font-weight:bolder;
+}
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.8rem;
+    padding:0 1rem 0 0;
+}
+.playlist:hover{
+    background-color: #3d3d3d;
+}
+.playbutton{
+    background-color: #1FDF64;
+    padding: 0;
+    height: 2.1rem;
+    width: 2.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: black 0 0.4rem 0.6rem;
+    transition: 0.2s all ease-in-out;
+    margin-top: 1.5rem;
+    animation: reveal 0.2s forwards;
+}
+.playbutton:hover{
+    transform: scale(1.04,1.04);
+}
+.playbutton:active{
+    transform: scale(1,1);
+    opacity: 0.5;
+}
+.playbutton img{
+    height: 0.9rem;
+    width: 0.9rem;
+    margin-left: 3px;
+}
+.infoSection{
+    display: flex;
+    gap: 0.5rem;
+}
+.playbuttonContainer{
+    padding: 0 0.5rem;
+}
+
+@keyframes reveal {
+    100%{
+        margin-top: 0;
+    }
+}
