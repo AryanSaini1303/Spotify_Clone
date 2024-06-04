@@ -1,7 +1,25 @@
+import { useEffect, useState } from "react";
 import styles from "./mainScreenShade.module.css";
 
-export default function MainScreenShade({ playlists, playlistId }) {
-  // Map playlist data to an array of { id, color } objects
+export default function MainScreenShade({playlistId }) {
+
+  const [playlists, setPlaylists] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/getPlaylists");
+        if (!response.ok) {
+          throw new Error(`Error fetching data: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setPlaylists(data);
+      } catch (err) {
+        console.error("Error fetching playlists:", err);
+      }
+    };
+    fetchData();
+  }, []);
+
   const accentColors = playlists.map((playlist) => ({
     id: playlist.id,
     color: playlist.accentColor,

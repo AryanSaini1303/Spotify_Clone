@@ -1,8 +1,43 @@
+import { useEffect, useState } from "react";
 import styles from "./libPlaylistSection.module.css";
 import Link from "next/link";
 
-export default function LibPlaylistSection({ minimize, playlists, playlistPosters, num }) {
-  // console.log(playlistPosters);
+export default function LibPlaylistSection({ minimize,playlistPosters}) {
+
+  const [num,setNum]=useState([])
+  useEffect(()=>{
+    const fetchData=async()=>{
+      try{
+        const response=await fetch("/api/getNumSongsPlaylist");
+        if(!response.ok){
+          throw new Error(`Error fetching data: ${response.statusText}`);
+        }
+        const data=await response.json();
+        setNum(data);
+      }catch(err){
+        console.error("Error fetching playlists:",err);
+      }
+    };
+    fetchData();
+  },[]);
+
+  const [playlists,setPlaylists]=useState([])
+  useEffect(()=>{
+    const fetchData=async()=>{
+      try{
+        const response=await fetch("/api/getPlaylists");
+        if(!response.ok){
+          throw new Error(`Error fetching data: ${response.statusText}`);
+        }
+        const data=await response.json();
+        setPlaylists(data);
+      }catch(err){
+        console.error("Error fetching playlists:",err);
+      }
+    };
+    fetchData();
+  },[]);
+
   return (
     <div className={styles.container} style={minimize ? { margin: "0 auto"} : null} >
       {playlists.map((playlist,index) => {
