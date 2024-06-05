@@ -1,5 +1,6 @@
 import styles from "./playlistSection.module.css";
 import { useEffect, useState } from "react";
+import PlaylistSongsSection from "./playlistSongsSection";
 
 export default function PlaylistSection({ className, id }) {
   const [currPlayInfo, setCurrPlayInfo] = useState([]);
@@ -50,6 +51,7 @@ export default function PlaylistSection({ className, id }) {
           </h5>
         </div>
       </header>
+      <PlaylistSongsSection/>
     </div>
   );
 }

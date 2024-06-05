@@ -17,7 +17,7 @@ export default function Content({id}) {
   function handleMinLib() {
     setMinLib(!minLib);
   }
-  console.log(minLib);
+  // console.log(minLib);
   
   const [playlistPosters,setPlaylistsPosters]=useState([])
   useEffect(()=>{
