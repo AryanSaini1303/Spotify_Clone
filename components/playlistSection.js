@@ -32,11 +32,8 @@ export default function PlaylistSection({ className, id }) {
   }
 
   return (
-    <div className={className}>
-      <div
-        className={styles.shade}
-        style={{ background: `linear-gradient(${currPlayInfo.color},#121212)` }}
-      ></div>
+    <div className={className} style={{ background: `linear-gradient(${currPlayInfo.color},#121212)` }}>
+      {/* <div className={styles.shade}></div> */}
       <header className={styles.headerSection}>
         <img src={currPlayInfo.poster} alt="" />
         <div className={styles.playlistInfo}>
@@ -51,7 +48,7 @@ export default function PlaylistSection({ className, id }) {
           </h5>
         </div>
       </header>
-      <PlaylistSongsSection/>
+      <PlaylistSongsSection currPlayInfo={currPlayInfo}/>
     </div>
   );
 }

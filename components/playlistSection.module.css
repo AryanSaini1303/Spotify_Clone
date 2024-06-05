@@ -25,13 +25,13 @@
     flex-direction: column;
     gap: 0.5rem;
 }
-.shade{
-    height: 100%;
+/* .shade{
+    background-color: black;
+    height: 52.3%;
     width: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    border-radius: 10px;
-    opacity: 0.3;
+    opacity: 0.7;
     filter: brightness(130%);
-}
+} */

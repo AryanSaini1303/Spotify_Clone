@@ -4,6 +4,8 @@
     margin: 0 1.5rem;
     align-items: center;
     user-select: none;
+    /* position: sticky;
+    top:0; */
 }
 .playButton img{
     filter: contrast(100%);
@@ -70,5 +72,5 @@
     cursor:pointer;
 }
 .search:hover{
-    background-color: #3f3f3f5d;
+    background-color: #6464645d;
 }
