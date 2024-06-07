@@ -2,10 +2,13 @@ import prisma from "@/lib/prisma";
 
 export default async function getPlaylists(req,res) {
   try {
-    // Connect to the database
-    await prisma.$connect();
-    // Fetch playlists from the database
-    const playlists = await prisma.playlist.findMany();
+    const playlists = await prisma.playlist.findMany({
+      select:{
+        id:true,
+        name:true,
+        accentColor:true
+      }
+    });
     // console.log(playlists);
     res.status(200).json(playlists);
   } catch (error) {

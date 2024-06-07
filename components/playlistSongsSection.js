@@ -1,6 +1,5 @@
 import styles from "./playlistSongsSection.module.css";
 import PlaylistNavs from "./playlistNavs";
-import { useState } from "react";
 
 export default function PlaylistSongsSection({currPlayInfo}) {
   return (
@@ -18,7 +17,7 @@ export default function PlaylistSongsSection({currPlayInfo}) {
         <div className={styles.songs}>
           {currPlayInfo.length!=0&&(currPlayInfo.songInfo.map((song, index) => {
             return (
-              <div className={styles.song}>
+              <div className={styles.song} key={song.id}>
                 <h5>{index + 1}</h5>
                 <div className={styles.songCard}>
                   <img src={song.poster} alt="" />

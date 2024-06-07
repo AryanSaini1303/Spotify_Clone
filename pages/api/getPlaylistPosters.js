@@ -21,10 +21,11 @@ export default async function getPlaylistPosters(req,res) {
   for (let i = 0; i < playlists.length; i++) {
     const response = await prisma.playlistSong.findFirst({
       where: { playlistId: playlists[i].id },
-      select: { song: { select: { poster: true } } }, // Select only the 'poster' field from the related song
+      select:{poster:true}, // Select only the 'poster' field from the related song
     });
+    // console.log(response);
     if (response) {
-      posters.push(response.song.poster);
+      posters.push(response.poster);
     }
   }
 

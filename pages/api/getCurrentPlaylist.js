@@ -11,19 +11,31 @@ export default async function getCurrentPlaylist(req, res) {
   };
   const currentPlaylist = await prisma.playlist.findFirst({
     where: { id: Id },
+    select:{
+      name:true,
+      accentColor:true
+    }
   });
-  let response = await prisma.playlistSong.findMany({
+  let songIds = await prisma.playlistSong.findMany({
     where: { playlistId: Id },
+    select:{
+      songId:true
+    }
   });
+  // console.log(songIds);
   const response1 = await prisma.playlistSong.findFirst({
     where: { playlistId: Id },
+    select:{
+      poster:true
+    }
   });
-  const songIds = response.map((item) => ({ songId: item.songId }));
+  // console.log(response1);
+  // const songIds = response.map((item) => ({ songId: item.songId }));
   let songInfo = [];
   await Promise.all(
     songIds.map(async (songId) => {
       // console.log(songId);
-      response = await prisma.song.findFirst({
+      let response = await prisma.song.findFirst({
         where: { id: songId.songId },
       });
       songInfo.push(response);

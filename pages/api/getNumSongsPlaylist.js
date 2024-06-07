@@ -9,7 +9,7 @@ export default async function getNumSongsPlaylist(req,res) {
   await Promise.all(playlists.map(async (playlist) => {
     const response = await prisma.playlistSong.findMany({
       where: { playlistId: playlist.id },
-    //   select: { song: { select: { poster: true } } }, // Select only the 'poster' field from the related song
+      select:{songId:true}
     });
 
     // If a matching poster is found, push it into the posters array
