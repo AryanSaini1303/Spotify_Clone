@@ -2,7 +2,7 @@
     display: grid;
     height:98.3vh;
     width:100%;
-    grid-template-columns:0.2fr 0.8fr 2.7fr 1fr;
+    grid-template-columns:0.2fr 0.8fr 2.7fr 1.3fr;
     grid-template-rows:1.5fr 8.61fr 1fr;
     gap: 0.5rem;
     background-color: black;
@@ -66,6 +66,7 @@
     grid-area:1/4/3/4;
     background-color: #121212;
     border-radius: 10px;
+    padding: 1rem;
     color:white;
 }
 .minMainSection{
@@ -82,4 +83,5 @@
     background-color: #121212;
     border-radius: 10px;
     color:white;
+    padding: 1rem;
 }

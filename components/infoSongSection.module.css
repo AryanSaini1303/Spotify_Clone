@@ -1,0 +1,23 @@
+.songCard{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+.songCard img{
+    height: 22rem;
+    width: 22rem;
+    /* display: none; */
+    border-radius: 8px;
+}
+.songInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+.songInfo *{
+    margin: 0;
+}
+.songInfo h5{
+    color: rgb(153, 153, 153);
+}

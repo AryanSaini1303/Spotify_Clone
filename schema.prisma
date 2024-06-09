@@ -27,6 +27,8 @@ model Song {
   poster      String?     // Poster of the song
   duration    Int        // Duration of the song in seconds
   playlists   PlaylistSong[] // Relation to PlaylistSong
+  artistPoster String?   // Artist's image
+  artistDescription String? // Artist's Description
 
   @@map(name: "songs") // Map this model to the "songs" table in the database
 }
