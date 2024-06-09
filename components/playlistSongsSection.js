@@ -1,5 +1,6 @@
 import styles from "./playlistSongsSection.module.css";
 import PlaylistNavs from "./playlistNavs";
+import PlaylistSong from "./playlistSong";
 
 export default function PlaylistSongsSection({currPlayInfo}) {
   return (
@@ -17,19 +18,7 @@ export default function PlaylistSongsSection({currPlayInfo}) {
         <div className={styles.songs}>
           {currPlayInfo.length!=0&&(currPlayInfo.songInfo.map((song, index) => {
             return (
-              <div className={styles.song} key={song.id}>
-                <h5>{index + 1}</h5>
-                <div className={styles.songCard}>
-                  <img src={song.poster} alt="" />
-                  <div className={styles.songDetails}>
-                    <h4>{song.title}</h4>
-                    <h5>{song.artist}</h5>
-                  </div>
-                </div>
-                <time>
-                  {Math.floor(song.duration / 60)}:{song.duration % 60}
-                </time>
-              </div>
+              <PlaylistSong song={song} index={index}/>
             );
           }))}
         </div>

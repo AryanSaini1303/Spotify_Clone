@@ -1,9 +1,11 @@
 export default function PlayerSection({ className }) {
     return (
       <>
-        <div className={className}>
-          <h1>playerSection</h1>
-        </div>
+        <section className={className}>
+          <div className="song"></div>
+          <div className="player"></div>
+          <div className="navs"></div>
+        </section>
       </>
     );
   }

@@ -12,7 +12,7 @@
 .info{
     margin-top: 1.8rem;
     display: grid;
-    grid-template-columns: 0.1fr 10fr 0.4fr;
+    grid-template-columns: 0.1fr 10fr 0.3fr;
     padding: 0 1.5rem;
     gap:1rem
 }
@@ -29,54 +29,6 @@
 }
 .songsSection h5{
     margin: 0;
-}
-.song{
-    display: grid;
-    grid-template-columns: 0.1fr 10fr 0.1fr;
-    gap:1rem;
-    transition: 0.2s all ease-in-out;
-    padding: 0.5rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.songs img{
-    height: 2.5rem;
-    width: 2.5rem;
-    border-radius: 5px;
-}
-.songCard{
-    display: flex;
-    align-items: end;
-    gap: 0.8rem;
-}
-.songDetails *{
-    margin: 0;
-}
-.songDetails{
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    justify-content: end;
-}
-.songDetails h4{
-    font-weight: 400;
-}
-.songDetails h5{
-    font-weight: 500;
-}
-.songs h5{
-    display: flex;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.596);
-}
-.songs time{
-    display: flex;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.596);
-    font-size: 0.9rem;
-}
-.song:hover{
-    background-color: #40404088;
 }
 .songs{
     margin-top: 1.5rem;
