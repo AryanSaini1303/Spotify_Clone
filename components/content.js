@@ -12,7 +12,7 @@ import PlaylistSection from "./playlistSection";
 export default function Content({id}) {
   const currentRoute=usePathname();
   // console.log(currentRoute.match("/playlist"));
-  const [minLib, setMinLib] = useState();
+  const [minLib, setMinLib] = useState(true);
 
   function handleMinLib() {
     setMinLib(!minLib);
