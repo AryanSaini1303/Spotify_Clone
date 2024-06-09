@@ -46,3 +46,12 @@
 .song:hover{
     background-color: #40404088;
 }
+.playButton{
+    filter: invert(85%);
+    height: 1rem !important;
+    width: 0.6rem !important;
+}
+.firstInfo{
+    display: flex;
+    align-items: center;
+}

@@ -1,8 +1,27 @@
-import styles from "./playlistSong.module.css"
-export default function PlaylistSong({song, index}) {
+import { useState } from "react";
+import styles from "./playlistSong.module.css";
+export default function PlaylistSong({ song, index }) {
+  const [hover, setHover] = useState(false);
+  function handleMouseEnter() {
+    setHover(true);
+  }
+  function handleMouseLeave() {
+    setHover(false);
+  }
   return (
-    <div className={styles.song} key={song.id}>
-      <h5>{index + 1}</h5>
+    <div
+      className={styles.song}
+      key={song.id}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <header className={styles.firstInfo}>
+        {hover ? (
+          <img src="/playButton.svg" alt="" className={styles.playButton} />
+        ) : (
+          <h5>{index + 1}</h5>
+        )}
+      </header>
       <div className={styles.songCard}>
         <img src={song.poster} alt="" />
         <div className={styles.songDetails}>
