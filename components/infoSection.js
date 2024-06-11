@@ -1,3 +1,4 @@
+import InfoArtistSection from "./infoArtistSection";
 import styles from "./infoSection.module.css";
 import InfoSongSection from "./infoSongSection";
 export default function InfoSection({ className }) {
@@ -8,8 +9,8 @@ export default function InfoSection({ className }) {
           <button><img src="/cross.svg" alt="" /></button>
         </header>
         <InfoSongSection/>
-        <div className="artistSection"></div>
-        <div className="queueSection"></div>
+        <InfoArtistSection/>
+        {/* <div className="queueSection"></div> */}
       </div>
     </>
   );
