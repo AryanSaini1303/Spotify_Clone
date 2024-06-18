@@ -52,6 +52,8 @@
     display: flex;
     align-items: center;
     padding: 0.5rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
 }
 .mainSection{
     grid-area:1/3/3/3;
