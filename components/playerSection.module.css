@@ -64,7 +64,7 @@
   transition: all 0.1s ease-in-out;
 }
 .playBtn * {
-  padding-left: 0.1rem;
+  padding-left: 0.18rem;
 }
 .nexprev {
   opacity: 0.6;

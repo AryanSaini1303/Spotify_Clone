@@ -29,8 +29,8 @@ export default function PlayerSection({ className }) {
               <Image
                 src="/playButtonSharp.svg"
                 alt="play"
-                width={22}
-                height={22}
+                width={21}
+                height={21}
               />
             </div>
             <div className={`${styles.nextBtn} ${styles.nexprev}`}>
