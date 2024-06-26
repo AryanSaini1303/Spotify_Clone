@@ -1,6 +1,7 @@
 .songCard {
   display: flex;
   gap: 0.8rem;
+  margin: auto 0;
 }
 .songDetails * {
   margin: 0;
@@ -45,9 +46,10 @@
   transition: 0.2s all ease-in-out;
 }
 .btns {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+  gap: 0.8rem 1rem;
 }
 .btns * {
   display: flex;
@@ -57,14 +59,11 @@
 .playBtn {
   background-color: white;
   border-radius: 50%;
-  height: 2rem;
-  width: 2rem;
+  height: 2.1rem;
+  width: 2.1rem;
   display: flex;
   align-items: center;
   transition: all 0.1s ease-in-out;
-}
-.playBtn * {
-  padding-left: 0.18rem;
 }
 .nexprev {
   opacity: 0.6;
@@ -79,3 +78,71 @@
 .nexprev:active {
   opacity: 0.6;
 }
+.progressBar{
+  grid-area: 2/1/2/4;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 300%;
+  border-radius: 10px;
+  height: 19%;
+  background-color: #535353;
+}
+.progressBar::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  /* display: none; */
+  opacity: 0;
+  height: 0.8rem;
+  width: 0.8rem;
+  border-radius: 50%;
+  background-color: white;
+}
+.progressBarContainer{
+  grid-area: 2/1/2/4;
+  width: 300%;
+  border-radius: 10px;
+  height: 19%;
+  background-color: #535353;
+  position: relative;
+}
+.progressBarContainer .overlay{
+  height: 100%;
+  background-color: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transition: 0.2s background-color;
+}
+/* .progressBarContainer .overlay::after{
+  content: "";
+  height: 0.8rem;
+  width: 0.8rem;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  right: -0.8rem;
+  top: -0.3rem;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  transition: 0.2s all;
+} */
+ .progressBarContainer .currentTime{
+  position:absolute;
+  left: -2.5rem;
+  top: -2.2rem;
+  height: 100%;
+  color: white;
+  font-weight: 500;
+  font-size: 0.75rem;
+ }
+ .progressBarContainer .duration{
+  position:absolute;
+  right: -2.5rem;
+  top: -2.2rem;
+  height: 100%;
+  color: white;
+  font-weight: 500;
+  font-size: 0.75rem;
+ }
