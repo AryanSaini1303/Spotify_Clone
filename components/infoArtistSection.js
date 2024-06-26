@@ -6,11 +6,11 @@ export default function InfoArtistSection() {
       <section className={styles.info}>
         <h4>Eli Wilson</h4>
         <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam animi
-          labore quisquam, natus atque aperiam rerum illum repudiandae nemo
-          debitis quaerat blanditiis ea, odio at culpa molestiae asperiores
-          sequi cumque harum itaque doloremque. Cumque dignissimos ad aut
-          ducimus temporibus voluptate nam nemo, nostrum impedit nihil.
+          With over 20 years as a full-time goaltending coach, Eli is known
+          worldwide as one of the leading minds in goaltending coaching and
+          development. His no nonsense approach to coaching has resonated
+          worldwide across the goaltending community. He has worked with over 30
+          goaltenders in the NHL, many of them since their minor hockey days.
         </p>
         <h4 className={styles.header}>About the artist</h4>
         <div className={styles.shade}></div>
