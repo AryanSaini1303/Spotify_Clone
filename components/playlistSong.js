@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./playlistSong.module.css";
-export default function PlaylistSong({ song, index }) {
+export default function PlaylistSong({ song, index, key }) {
   const [hover, setHover] = useState(false);
   function handleMouseEnter() {
     setHover(true);
@@ -11,7 +11,7 @@ export default function PlaylistSong({ song, index }) {
   return (
     <div
       className={styles.song}
-      key={song.id}
+      key={key}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
