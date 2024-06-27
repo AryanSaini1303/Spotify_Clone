@@ -5,9 +5,10 @@
     position: absolute;
     width: 100%;
     left: 0;
-    min-height: 50%;
+    min-height: 50vh;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    overflow: auto;
 }
 .info{
     margin-top: 1.8rem;
