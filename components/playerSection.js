@@ -140,7 +140,7 @@ export default function PlayerSection({ className }) {
               />
             </div>
             <div className={styles.progressBarContainer}>
-              <h6 className={styles.currentTime}>{songCurrentTime}</h6>
+              <h6 className={styles.currentTime}>{songCurrentTime==0?"0:00":songCurrentTime}</h6>
               <div className={styles.overlay} style={overlayStyle}></div>
               <input
                 onMouseEnter={handleProgressMouseEnter}
