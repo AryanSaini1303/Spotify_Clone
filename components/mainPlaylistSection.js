@@ -1,9 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import styles from "./mainPlaylistSection.module.css";
 
-export default function MainPlaylistSection({ sendDataToParent, playlistPosters }) {
+export default function MainPlaylistSection({ sendDataToParent, playlistPosters, sendPlaylistIdToParent }) {
   const [mouseEnter, setMouseEnter] = useState({});
 
   function handleMouseEnter(id) {
@@ -43,9 +42,9 @@ export default function MainPlaylistSection({ sendDataToParent, playlistPosters 
     <div className={styles.container}>
       {playlists.map((playlist, index) => {
         return (
-          <Link
+          <section
             key={playlist.id}
-            href={`/playlist/${playlist.id}`}
+            onClick={()=>{sendPlaylistIdToParent(playlist.id)}}
             className={styles.playlist}
             onMouseEnter={() => handleMouseEnter(playlist.id)}
             onMouseLeave={() => handleMouseLeave(playlist.id)}
@@ -61,7 +60,7 @@ export default function MainPlaylistSection({ sendDataToParent, playlistPosters 
                 </div>
               </div>
             )}
-          </Link>
+          </section>
         );
       })}
     </div>

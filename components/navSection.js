@@ -1,22 +1,32 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./navSection.module.css";
 import Link from "next/link";
-export default function NavSection({ className, minimize }) {
+export default function NavSection({ className, minimize, homeFunc, navFlag }) {
   const [homeColor, setHomeColor] = useState("rgb(122, 122, 122)");
   function handleHomeClick() {
     setHomeColor("white");
     setSearchColor("rgb(122, 122, 122)");
+    homeFunc("");
   }
   const [searchColor, setSearchColor] = useState("rgb(122, 122, 122)");
   function handleSearchClick() {
     setHomeColor("rgb(122, 122, 122)");
     setSearchColor("white");
   }
+  useEffect(()=>{
+    if (!navFlag) {
+      setSearchColor("rgb(122, 122, 122)");
+      setHomeColor("rgb(122, 122, 122)");
+    }
+    if(navFlag&&searchColor!='white'){
+      setHomeColor("white");
+    }
+  },[navFlag]);
   return (
     <>
       <div className={className}>
-        <Link href="/" className={styles.links} onClick={handleHomeClick}>
+        <div className={styles.links} onClick={handleHomeClick}>
           <div className={styles.navs} style={{ color: homeColor }}>
             {homeColor == "rgb(122, 122, 122)" ? (
               <svg
@@ -41,7 +51,7 @@ export default function NavSection({ className, minimize }) {
             )}
             {!minimize && <h4>Home</h4>}
           </div>
-        </Link>
+        </div>
         <Link href="/" className={styles.links} onClick={handleSearchClick}>
           <div className={styles.navs} style={{ color: searchColor }}>
             {searchColor == "rgb(122, 122, 122)" ? (
@@ -55,7 +65,13 @@ export default function NavSection({ className, minimize }) {
                 <path d="M11.742 10.344a6.5 6.5 0 10-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 001.415-1.414l-3.85-3.85a1.007 1.007 0 00-.115-.1zM12 6.5a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z" />
               </svg>
             ) : (
-              <svg fill="none" viewBox="0 0 15 15" height="1.7em" width="1.7em" style={minimize?{margin:"auto"}:null}>
+              <svg
+                fill="none"
+                viewBox="0 0 15 15"
+                height="1.7em"
+                width="1.7em"
+                style={minimize ? { margin: "auto" } : null}
+              >
                 <path
                   fill="currentColor"
                   d="M6.5 0a6.5 6.5 0 104.23 11.436l3.416 3.418.708-.708-3.418-3.417A6.5 6.5 0 006.5 0z"

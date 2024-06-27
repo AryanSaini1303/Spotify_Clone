@@ -8,9 +8,8 @@ const dosis = Dosis({
   weight: "700",
   subsets: ["latin"],
 });
-export default function MainSection({ className, playlists, playlistPosters }) {
+export default function MainSection({ className, playlists, playlistPosters, sendPlaylistIdToParent }) {
   const time = new Date().getHours();
-  // console.log(time);
   let greeting;
   if (time >= 5 && time < 12) {
     greeting = "Good Morning";
@@ -34,6 +33,7 @@ export default function MainSection({ className, playlists, playlistPosters }) {
           <MainPlaylistSection
             playlistPosters={playlistPosters}
             sendDataToParent={handleDataFromChild}
+            sendPlaylistIdToParent={sendPlaylistIdToParent}
           />
         </div>
       </div>

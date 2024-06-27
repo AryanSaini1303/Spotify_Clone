@@ -6,6 +6,7 @@
 }
 .links{
     text-decoration: none;
+    cursor: pointer;
 }
 .navs:hover{
     opacity: 0.7;

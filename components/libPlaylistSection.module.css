@@ -12,6 +12,7 @@
     border-radius: 10px;
     transition: 0.2s all ease-in-out;
     padding: 0.4rem;
+    cursor: pointer;
 }
 .playlist:hover{
     background-color: #29292969;

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./libPlaylistSection.module.css";
-import Link from "next/link";
 
-export default function LibPlaylistSection({ minimize,playlistPosters}) {
+export default function LibPlaylistSection({ minimize, playlistPosters, sendPlaylistIdToParent}) {
 
   const [num,setNum]=useState([])
   useEffect(()=>{
@@ -42,7 +41,8 @@ export default function LibPlaylistSection({ minimize,playlistPosters}) {
     <div className={styles.container} style={minimize ? { margin: "0 auto"} : null} >
       {playlists.map((playlist,index) => {
         return (
-          <Link href={`/playlist/${playlist.id}`} className={styles.playlist} key={playlist.id}>
+          <section className={styles.playlist} key={playlist.id} onClick={()=>{sendPlaylistIdToParent(playlist.id)}}>
+            {/* can't pass the "sendPlaylistIdToParent" function with paranthesis to the "onClick "directly as it'll automatically execute the function so instead what we do is we create and anonymous function and write our function call inside that function */}
             <img src={playlistPosters[index]} alt="" />
             {!minimize && (
               <div className={styles.playlistInfo}>
@@ -52,7 +52,7 @@ export default function LibPlaylistSection({ minimize,playlistPosters}) {
                 </h5>
               </div>
             )}
-          </Link>
+          </section>
         );
       })}
     </div>

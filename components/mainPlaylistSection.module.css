@@ -14,6 +14,7 @@
     align-items: center;
     justify-content: space-between;
     min-width: 18rem;
+    cursor: pointer;
 }
 .playlist h4{
     font-weight:bolder;

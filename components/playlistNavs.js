@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./playlistNavs.module.css";
 export default function PlaylistNavs() {
   return (
