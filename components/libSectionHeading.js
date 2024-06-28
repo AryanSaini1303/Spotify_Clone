@@ -63,7 +63,7 @@ export default function LibSectionHeading({ onClick, minimize }) {
         {!minimize && <h4>Your Library</h4>}
       </div>
         {!minimize &&
-          <Link href="/" className={styles.addPlaylist}>
+          <div className={styles.addPlaylist}>
             <svg
             viewBox="0 0 512 512"
             fill="currentColor"
@@ -79,7 +79,7 @@ export default function LibSectionHeading({ onClick, minimize }) {
               d="M256 112v288M400 256H112"
             />
           </svg>
-      </Link>
+      </div>
         }
     </header>
   );
