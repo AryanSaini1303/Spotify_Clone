@@ -78,7 +78,7 @@
 .nexprev:active {
   opacity: 0.6;
 }
-.progressBar{
+.progressBar {
   grid-area: 2/1/2/4;
   -webkit-appearance: none;
   appearance: none;
@@ -87,7 +87,7 @@
   height: 19%;
   background-color: #535353;
 }
-.progressBar::-webkit-slider-thumb{
+.progressBar::-webkit-slider-thumb {
   -webkit-appearance: none;
   /* display: none; */
   opacity: 0;
@@ -96,7 +96,7 @@
   border-radius: 50%;
   background-color: white;
 }
-.progressBarContainer{
+.progressBarContainer {
   grid-area: 2/1/2/4;
   width: 300%;
   border-radius: 10px;
@@ -104,7 +104,7 @@
   background-color: #535353;
   position: relative;
 }
-.progressBarContainer .overlay{
+.progressBarContainer .overlay {
   height: 100%;
   background-color: white;
   border-radius: 10px;
@@ -128,21 +128,54 @@
   pointer-events: none;
   transition: 0.2s all;
 } */
- .progressBarContainer .currentTime{
-  position:absolute;
+.progressBarContainer .currentTime {
+  position: absolute;
   left: -2.5rem;
   top: -2.2rem;
   height: 100%;
   color: white;
   font-weight: 500;
   font-size: 0.75rem;
- }
- .progressBarContainer .duration{
-  position:absolute;
+}
+.progressBarContainer .duration {
+  position: absolute;
   right: -2.5rem;
   top: -2.2rem;
   height: 100%;
   color: white;
   font-weight: 500;
   font-size: 0.75rem;
- }
+}
+.otherNavs{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidePlayerBtn{
+  height: 0.9rem;
+  width: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid white 2px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.1s ease-in-out;
+  user-select: none;
+  border-radius: 2px;
+  position: relative;
+}
+.sidePlayerBtn:hover{
+  opacity: 1;
+}
+.sidePlayerBtn:active{
+  opacity: 0.5;
+}
+.sidePlayerBtn .circle{
+  height: 0.3rem;
+  width: 0.3rem;
+  border-radius: 50%;
+  background-color: #1FDF64;
+  position: absolute;
+  top: 1.5rem;
+}

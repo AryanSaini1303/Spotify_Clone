@@ -12,6 +12,7 @@ export default function Content() {
   const [minLib, setMinLib] = useState(true);
   const [playlistId,setPlaylistId]=useState();
   const [navSectionFlag,setNavSectionFlag]=useState(true);
+  const [minInfo,setMinInfo]=useState(false);
 
   function handleMinLib() {
     setMinLib(!minLib);
@@ -38,14 +39,38 @@ export default function Content() {
     setPlaylistId(id);
     setNavSectionFlag(false);
   }
-  // console.log(playlistId);
+
+  function getInfoFlagFromInfoSection(){
+    setMinInfo(true);
+  }
+  function getInfoFlagFromPlayerSection(){
+    setMinInfo(!minInfo);
+  }
+  console.log(minInfo);
+
+  let mainSectionClass = (() => {
+    if (minLib&&!minInfo) {
+      return styles.minLibMainSection;
+    } 
+    else if(!minLib&&!minInfo) {
+      return styles.mainSection;
+    }
+    else if(minInfo&&minLib){
+      return styles.minInfoMainSection;
+    }
+    else if(!minLib&&minInfo){
+      return styles.minInfoNotLibMainSection;
+    }
+  })();
+  
+  // console.log(mainSectionClass);
   return (
     <div className={styles.mainPageContainer}>
       <NavSection className={minLib ? styles.minNavSection : styles.navSection} minimize={minLib} homeFunc={setPlaylistId} navFlag={navSectionFlag}/>
       <LibSection className={!minLib ? styles.libSection : styles.minLibSection} onClick={handleMinLib} minimize={minLib} playlistPosters={playlistPosters} sendPlaylistIdToParent={getplaylistIdFromChild}/>
-      <PlayerSection className={styles.playerSection} />
-      <InfoSection className={!minLib ? styles.infoSection : styles.minInfoSection} />
-      {!playlistId?<MainSection className={!minLib ? styles.mainSection : styles.minMainSection} playlistPosters={playlistPosters} sendPlaylistIdToParent={getplaylistIdFromChild}/>:<PlaylistSection className={!minLib ? styles.mainSection : styles.minMainSection} id={playlistId}/>}
+      <PlayerSection className={styles.playerSection} flagFunc={getInfoFlagFromPlayerSection} minInfoFlag={minInfo}/>
+      {!minInfo&&<InfoSection className={!minLib ? styles.infoSection : styles.minInfoSection} flagFunc={getInfoFlagFromInfoSection}/>}
+      {!playlistId?<MainSection className={mainSectionClass} playlistPosters={playlistPosters} sendPlaylistIdToParent={getplaylistIdFromChild}/>:<PlaylistSection className={mainSectionClass} id={playlistId}/>}
     </div>
   );
 }

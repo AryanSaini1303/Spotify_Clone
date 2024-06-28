@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./playerSection.module.css";
 import { useRef, useState, useEffect } from "react";
 
-export default function PlayerSection({ className }) {
+export default function PlayerSection({ className,flagFunc,minInfoFlag }) {
   const progressRef = useRef(null);
   const playPauseRef = useRef(null);
   const songRef = useRef(null);
@@ -87,6 +87,7 @@ export default function PlayerSection({ className }) {
     width: `${progressBarValue}%`,
     backgroundColor
   };
+  // console.log(minInfoFlag);
   return (
     <>
       <section className={className}>
@@ -156,7 +157,12 @@ export default function PlayerSection({ className }) {
             </div>
           </div>
         </section>
-        <div className="otherNavs"></div>
+        <section className={styles.otherNavs}>
+          <div className={styles.sidePlayerBtn} onClick={flagFunc} style={!minInfoFlag?{border:"solid #1FDF64 2px", opacity:"1"}:null}>
+            <Image src={minInfoFlag?"/playButtonSharp.svg":"/playButtonSharpGreen.svg"} height={minInfoFlag?10:7} width={minInfoFlag?10:7} style={minInfoFlag&&{ filter: "invert(100%)" }}/>
+            {!minInfoFlag&&<div className={styles.circle}></div>}
+          </div>
+        </section>
       </section>
     </>
   );
