@@ -40,17 +40,18 @@ export default function PlayerSection({ className }) {
   function updateSongProgress() {
     if (songRef.current) {
       songRef.current.currentTime = progressRef.current.value;
-      if (!play) {
-        setPlay((prevPlay) => {
-          const newPlay = !prevPlay;
-          if (newPlay) {
-            songRef.current.play();
-          } else {
-            songRef.current.pause();
-          }
-          return newPlay;
-        });
-      }
+      // if (!play) {
+      //   setPlay((prevPlay) => {
+      //     const newPlay = !prevPlay;
+      //     if (newPlay) {
+      //       songRef.current.play();
+      //     } else {
+      //       songRef.current.pause();
+      //     }
+      //     return newPlay;
+      //   });
+      // }
+      // Above section of code automatically plays the song if we play with the progress bar and the song is paused, for the time being the song won't play from the point where it is set on the progress bar by the user until and unless the user taps the play button
     }
   }
 
