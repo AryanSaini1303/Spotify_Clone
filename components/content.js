@@ -46,8 +46,13 @@ export default function Content() {
   function getInfoFlagFromPlayerSection(){
     setMinInfo(!minInfo);
   }
-  console.log(minInfo);
+  // console.log(minInfo);
 
+  useEffect(()=>{
+    if(!playlistId){
+      setNavSectionFlag(true);
+    }
+  },[playlistId])
   let mainSectionClass = (() => {
     if (minLib&&!minInfo) {
       return styles.minLibMainSection;
