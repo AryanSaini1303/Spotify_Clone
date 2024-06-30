@@ -2,7 +2,7 @@ import styles from "./playlistSongsSection.module.css";
 import PlaylistNavs from "./playlistNavs";
 import PlaylistSong from "./playlistSong";
 
-export default function PlaylistSongsSection({currPlayInfo}) {
+export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo }) {
   return (
     <section className={styles.container}>
       <PlaylistNavs />
@@ -18,7 +18,7 @@ export default function PlaylistSongsSection({currPlayInfo}) {
         <div className={styles.songs}>
           {currPlayInfo.length!=0&&(currPlayInfo.songInfo.map((song, index) => {
             return (
-              <PlaylistSong song={song} index={index} key={song.id}/>
+              <PlaylistSong song={song} index={index} key={song.id} getCurrentSongInfo={getCurrentSongInfo}/>
             );
           }))}
         </div>

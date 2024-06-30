@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import PlaylistSongsSection from "./playlistSongsSection";
 import PlaylistSectionLoader from "./playlistSectionLoader";
 
-export default function PlaylistSection({ className, id }) {
+export default function PlaylistSection({ className, id, getCurrentSongInfo }) {
   const [currPlayInfo, setCurrPlayInfo] = useState([]);
   const [dataFlag,setDataFlag]=useState(false);
 
@@ -54,7 +54,7 @@ export default function PlaylistSection({ className, id }) {
               </h5>
             </div>
           </header>
-          <PlaylistSongsSection currPlayInfo={currPlayInfo} />
+          <PlaylistSongsSection currPlayInfo={currPlayInfo} getCurrentSongInfo={getCurrentSongInfo} />
         </>
       ) : (
         <div><PlaylistSectionLoader/></div>
