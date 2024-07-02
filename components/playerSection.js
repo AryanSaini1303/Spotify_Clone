@@ -189,8 +189,8 @@ export default function PlayerSection({
                     ? "/playButtonSharp.svg"
                     : "/playButtonSharpGreen.svg"
                 }
-                height={minInfoFlag ? 10 : 7}
-                width={minInfoFlag ? 10 : 7}
+                height={minInfoFlag ? 10 : 6.5}
+                width={minInfoFlag ? 10 : 6.5}
                 style={minInfoFlag && { filter: "invert(100%)" }}
               />
               {!minInfoFlag && <div className={styles.circle}></div>}
