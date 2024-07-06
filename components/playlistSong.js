@@ -3,9 +3,9 @@ import styles from "./playlistSong.module.css";
 
 export default function PlaylistSong({ song, index, getCurrentSongInfo, setCurrentSongId, currentSongId }) {
   const [hover, setHover] = useState(false);
-  console.log(currentSongId);
+  // console.log(currentSongId);
   currentSongId&&localStorage.setItem('currentSongId',currentSongId);
-  console.log(localStorage.getItem('currentSongId'));
+  // console.log(localStorage.getItem('currentSongId'));
   function handleMouseEnter() {
     setHover(true);
   }
