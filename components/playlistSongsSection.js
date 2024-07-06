@@ -1,8 +1,11 @@
 import styles from "./playlistSongsSection.module.css";
 import PlaylistNavs from "./playlistNavs";
 import PlaylistSong from "./playlistSong";
+import { useState } from "react";
 
 export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo }) {
+  const [currentSongId, setCurrentSongId] = useState(null);
+  // This state should only be in the parent component i.e. PlaylistSongsSection not in the child component i.e. PlaylistSong as each child component maintains its own state and does not know about the state of other child components. 
   return (
     <section className={styles.container}>
       <PlaylistNavs />
@@ -18,7 +21,7 @@ export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo 
         <div className={styles.songs}>
           {currPlayInfo.length!=0&&(currPlayInfo.songInfo.map((song, index) => {
             return (
-              <PlaylistSong song={song} index={index} key={song.id} getCurrentSongInfo={getCurrentSongInfo}/>
+              <PlaylistSong song={song} index={index} getCurrentSongInfo={getCurrentSongInfo} setCurrentSongId={setCurrentSongId} currentSongId={currentSongId}/>
             );
           }))}
         </div>
