@@ -15,7 +15,7 @@ export default function PlaylistSong({ song, index, getCurrentSongInfo, setCurre
   }
 
   function handleClick(id) {
-    console.log(id);
+    // console.log(id);
     getCurrentSongInfo(song);
     setCurrentSongId(id);
   }
