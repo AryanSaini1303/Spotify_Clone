@@ -53,7 +53,7 @@ export default function PlaylistSection({ className, id, getCurrentSongInfo, pla
               </h5>
             </div>
           </header>
-          <PlaylistSongsSection currPlayInfo={currPlayInfo} getCurrentSongInfo={getCurrentSongInfo} play={play} playerPlaylistId={playerPlaylistId} />
+          <PlaylistSongsSection currPlayInfo={currPlayInfo} getCurrentSongInfo={getCurrentSongInfo} playerPlay={play} playerPlaylistId={playerPlaylistId} />
         </>
       ) : (
         <div><PlaylistSectionLoader/></div>

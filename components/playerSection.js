@@ -10,7 +10,7 @@ export default function PlayerSection({
   defaultSongRender,
   playStatus
 }) {
-  console.log(info);
+  // console.log(info);
   const progressRef = useRef(null);
   const playPauseRef = useRef(null);
   const songRef = useRef(null);
@@ -20,6 +20,7 @@ export default function PlayerSection({
   const [progressMouseLeave, setProgressMouseLeave] = useState(false);
   const [songDuration, setSongDuration] = useState(0);
   const [songCurrentTime, setSongCurrentTime] = useState(0);
+  const isFirstRender=useRef(true);
 
   useEffect(() => {
     if (songRef.current) {
@@ -36,6 +37,12 @@ export default function PlayerSection({
       if(!defaultSongRender){
         setPlay(true);
       }
+      if (!isFirstRender.current) {
+        playStatus(info.playlistIds, true);
+      } else {  
+        isFirstRender.current = false;
+      }
+      // In above code, if the component is first rendered then it does not execute the function, which means now whenver the "info" changes i.e. when user clicks on the song, then the function will be exeucted
     }
   }, [info]);
 

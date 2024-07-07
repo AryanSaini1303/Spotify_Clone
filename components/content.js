@@ -65,11 +65,12 @@ export default function Content() {
     setCurrentSongInfo(info);
     setDefaultSongRender(false);
   }
-  function getPlayFromPlayerSection(id){
+  function getPlayFromPlayerSection(id,flag){
+    console.log(flag);
     setPlayerPlaylistId(id);
-    setPlay(!play);
+    !flag?setPlay(!play):setPlay(true);
   }
-  console.log(playerPlaylistId);
+  // console.log(playerPlaylistId);
   useEffect(() => {
     if (!playlistId) {
       setNavSectionFlag(true);
