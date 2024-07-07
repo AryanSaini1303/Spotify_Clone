@@ -5,26 +5,16 @@ import { useEffect, useState } from "react";
 
 export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo, playerPlay, playerPlaylistId }) {
   const [currentSongId, setCurrentSongId] = useState(null);
-  const [playlistPlay,setPlaylistPlay]=useState(false);
   const [finalPlay,setFinalPlay]=useState(false);
-  console.log(currPlayInfo);
   // This state should only be in the parent component i.e. PlaylistSongsSection not in the child component i.e. PlaylistSong as each child component maintains its own state and does not know about the state of other child components. 
-  function getPlaylistPlay(){
-    setPlaylistPlay(true);
-  }
-  console.log(playlistPlay);
-  console.log(playerPlay);
   useEffect(()=>{
     if(playerPlay){
-      console.log("here");
       setFinalPlay(true);
     }
     else{
-      console.log("here");
       setFinalPlay(false);
     }
-  },[playerPlay,playlistPlay])
-  console.log(finalPlay);
+  },[playerPlay])
   return (
     <section className={styles.container}>
       <PlaylistNavs id={currPlayInfo.id} currentId={playerPlaylistId} play={finalPlay}/>
@@ -40,7 +30,7 @@ export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo,
         <div className={styles.songs}>
           {currPlayInfo.length!=0&&(currPlayInfo.songInfo.map((song, index) => {
             return (
-              <PlaylistSong song={song} index={index} getCurrentSongInfo={getCurrentSongInfo} setCurrentSongId={setCurrentSongId} currentSongId={currentSongId} getPlaylistPlay={getPlaylistPlay}/>
+              <PlaylistSong song={song} index={index} getCurrentSongInfo={getCurrentSongInfo} setCurrentSongId={setCurrentSongId} currentSongId={currentSongId}/>
             );
           }))}
         </div>

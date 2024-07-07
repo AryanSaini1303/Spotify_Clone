@@ -1,10 +1,9 @@
 import { useState } from "react";
 import styles from "./playlistSong.module.css";
 
-export default function PlaylistSong({ song, index, getCurrentSongInfo, setCurrentSongId, currentSongId, getPlaylistPlay }) {
+export default function PlaylistSong({ song, index, getCurrentSongInfo, setCurrentSongId, currentSongId }) {
   const [hover, setHover] = useState(false);
   currentSongId&&localStorage.setItem('currentSongId',currentSongId);
-  // console.log(song);
   function handleMouseEnter() {
     setHover(true);
   }
@@ -14,8 +13,6 @@ export default function PlaylistSong({ song, index, getCurrentSongInfo, setCurre
   }
 
   function handleClick(id) {
-    // console.log(id);
-    getPlaylistPlay();
     getCurrentSongInfo(song);
     setCurrentSongId(id);
   }
