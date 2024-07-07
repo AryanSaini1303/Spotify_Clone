@@ -18,6 +18,10 @@ export default async function getCurrentPlaylist(id){
         response=await prisma.song.findFirst({
             where:{id:songId.songId}
         })
+        let response1=await prisma.playlistSong.findFirst({
+            where:{id:songId.songId}
+        })
+        response.playlistId=response1;
         songInfo.push(response);
     }))
     currentPlaylistInfo.name=currentPlaylist.name;

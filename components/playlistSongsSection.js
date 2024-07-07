@@ -3,12 +3,13 @@ import PlaylistNavs from "./playlistNavs";
 import PlaylistSong from "./playlistSong";
 import { useState } from "react";
 
-export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo }) {
+export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo, play, playerPlaylistId }) {
   const [currentSongId, setCurrentSongId] = useState(null);
+  console.log(currPlayInfo);
   // This state should only be in the parent component i.e. PlaylistSongsSection not in the child component i.e. PlaylistSong as each child component maintains its own state and does not know about the state of other child components. 
   return (
     <section className={styles.container}>
-      <PlaylistNavs />
+      <PlaylistNavs id={currPlayInfo.id} currentId={playerPlaylistId} play={play}/>
       <section className={styles.songsSection}>
         <header className={styles.info}>
           <h5>#</h5>

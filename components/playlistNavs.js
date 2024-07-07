@@ -1,10 +1,24 @@
 import styles from "./playlistNavs.module.css";
-export default function PlaylistNavs() {
+import { useEffect, useState } from "react";
+export default function PlaylistNavs({ id, currentId, play }) {
+  const [currentFlag,setCurrentFlag]=useState(false);
+  console.log(id);
+  console.log(currentId);
+  useEffect(()=>{
+    currentId&&currentId.map((thisId)=>{
+      console.log("Here");
+      id===thisId.playlistId&&setCurrentFlag(true)
+    })
+  },[currentId])
   return (
     <section className={styles.container}>
       <div className={styles.playnshuffle}>
         <div className={styles.playButton}>
-          <img src="/playButton.svg" alt="" />
+          <img
+            src={currentFlag&&play ? "/pause.svg" : "/playButton.svg"}
+            alt=""
+            style={currentFlag&&play ? null : { marginLeft: "3px" }}
+          />
         </div>
         <div className={styles.shuffleButton}>
           <img src="/shuffle.svg" alt="" />

@@ -14,6 +14,8 @@ export default function Content() {
   const [navSectionFlag, setNavSectionFlag] = useState(true);
   const [minInfo, setMinInfo] = useState(false);
   const [currentSongInfo, setCurrentSongInfo] = useState();
+  const [play,setPlay]=useState(false);
+  const [playerPlaylistId,setPlayerPlaylistId]=useState();
   useEffect(() => {
     currentSongInfo &&
       window.localStorage.setItem(
@@ -63,6 +65,11 @@ export default function Content() {
     setCurrentSongInfo(info);
     setDefaultSongRender(false);
   }
+  function getPlayFromPlayerSection(id){
+    setPlayerPlaylistId(id);
+    setPlay(!play);
+  }
+  console.log(playerPlaylistId);
   useEffect(() => {
     if (!playlistId) {
       setNavSectionFlag(true);
@@ -100,6 +107,7 @@ export default function Content() {
         minInfoFlag={minInfo}
         info={currentSongInfo}
         defaultSongRender={defaultSongRender}
+        playStatus={getPlayFromPlayerSection}
       />
       {!minInfo && (
         <InfoSection
@@ -119,6 +127,8 @@ export default function Content() {
           className={mainSectionClass}
           id={playlistId}
           getCurrentSongInfo={getCurrentSongInfo}
+          play={play}
+          playerPlaylistId={playerPlaylistId}
         />
       )}
     </div>

@@ -7,8 +7,10 @@ export default function PlayerSection({
   flagFunc,
   minInfoFlag,
   info,
-  defaultSongRender
+  defaultSongRender,
+  playStatus
 }) {
+  console.log(info);
   const progressRef = useRef(null);
   const playPauseRef = useRef(null);
   const songRef = useRef(null);
@@ -67,6 +69,7 @@ export default function PlayerSection({
   }
 
   function handlePlayClick() {
+    playStatus(info.playlistIds);
     setPlay((prevPlay) => {
       const newPlay = !prevPlay;
       if (newPlay) {
@@ -136,7 +139,7 @@ export default function PlayerSection({
               <div
                 className={styles.playBtn}
                 ref={playPauseRef}
-                onClick={handlePlayClick}
+                onClick={(()=>{handlePlayClick(info.id)})}
               >
                 <Image
                   src={!play ? "/playButtonSharp.svg" : "/pause.svg"}
