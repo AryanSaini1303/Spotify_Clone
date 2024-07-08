@@ -4,8 +4,8 @@ import PlaylistSong from "./playlistSong";
 import { useEffect, useState } from "react";
 
 export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo, playerPlay, playerPlaylistId }) {
-  const [currentSongId, setCurrentSongId] = useState(null);
   const [finalPlay,setFinalPlay]=useState(false);
+  const [currentSongId, setCurrentSongId] = useState(null);
   // This state should only be in the parent component i.e. PlaylistSongsSection not in the child component i.e. PlaylistSong as each child component maintains its own state and does not know about the state of other child components. 
   useEffect(()=>{
     if(playerPlay){
