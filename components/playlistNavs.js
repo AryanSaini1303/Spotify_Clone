@@ -4,12 +4,11 @@ export default function PlaylistNavs({ id, currentId, play }) {
   const [currentFlag,setCurrentFlag]=useState(false);
   console.log(id);
   console.log(currentId);
+  currentId&&localStorage.setItem('currentId',currentId);
+  console.log(localStorage.getItem('currentId'));
   useEffect(()=>{
-    currentId&&currentId.map((thisId)=>{
-      console.log("Here");
-      id===thisId.playlistId&&setCurrentFlag(true)
-    })
-  },[currentId])
+      id===localStorage.getItem('currentId')&&setCurrentFlag(true)
+  },[localStorage.getItem('currentId')]);
   return (
     <section className={styles.container}>
       <div className={styles.playnshuffle}>

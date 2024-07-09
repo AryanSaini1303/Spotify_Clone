@@ -8,7 +8,8 @@ export default function PlayerSection({
   minInfoFlag,
   info,
   defaultSongRender,
-  playStatus
+  playStatus,
+  songCurrentPlaylistId
 }) {
   // console.log(info);
   const progressRef = useRef(null);
@@ -38,7 +39,7 @@ export default function PlayerSection({
         setPlay(true);
       }
       if (!isFirstRender.current) {
-        playStatus(info.playlistIds, true);
+        playStatus(songCurrentPlaylistId, true);
       } else {  
         isFirstRender.current = false;
       }
@@ -76,7 +77,7 @@ export default function PlayerSection({
   }
 
   function handlePlayClick() {
-    playStatus(info.playlistIds);
+    playStatus();
     setPlay((prevPlay) => {
       const newPlay = !prevPlay;
       if (newPlay) {

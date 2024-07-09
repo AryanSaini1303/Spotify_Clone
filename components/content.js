@@ -109,6 +109,7 @@ export default function Content() {
         info={currentSongInfo}
         defaultSongRender={defaultSongRender}
         playStatus={getPlayFromPlayerSection}
+        songCurrentPlaylistId={playlistId}
       />
       {!minInfo && (
         <InfoSection
