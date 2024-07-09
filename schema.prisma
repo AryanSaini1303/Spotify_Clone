@@ -16,6 +16,7 @@ model Playlist {
   updatedAt   DateTime   @updatedAt // Updated timestamp
   songs       PlaylistSong[] // Relation to PlaylistSong
   accentColor String?    // Accent color of playlist
+  numOfSongs  Int?       // Total number of songs in the playlist
 
   @@map(name: "playlists") // Map this model to the "playlists" table in the database
 }

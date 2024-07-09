@@ -1,5 +1,4 @@
 import styles from "./libSectionHeading.module.css";
-import Link from "next/link";
 export default function LibSectionHeading({ onClick, minimize }) {
   return (
     <header className={styles.container} style={minimize?{margin:"0 auto"}:null}>

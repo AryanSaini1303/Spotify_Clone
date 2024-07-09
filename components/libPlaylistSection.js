@@ -1,48 +1,45 @@
 import { useEffect, useState } from "react";
 import styles from "./libPlaylistSection.module.css";
 
-export default function LibPlaylistSection({ minimize, playlistPosters, sendPlaylistIdToParent}) {
+export default function LibPlaylistSection({ minimize, playlistPosters, sendPlaylistIdToParent }) {
+  const [num, setNum] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
 
-  const [num,setNum]=useState([])
-  useEffect(()=>{
-    const fetchData=async()=>{
-      try{
-        const response=await fetch("/api/getNumSongsPlaylist");
-        if(!response.ok){
-          throw new Error(`Error fetching data: ${response.statusText}`);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [numResponse, playlistsResponse] = await Promise.all([
+          fetch("/api/getNumSongsPlaylist"),
+          fetch("/api/getPlaylists"),
+        ]);
+
+        if (!numResponse.ok || !playlistsResponse.ok) {
+          throw new Error(`Error fetching data: ${numResponse.statusText} / ${playlistsResponse.statusText}`);
         }
-        const data=await response.json();
-        setNum(data);
-      }catch(err){
-        console.error("Error fetching playlists:",err);
+
+        const numData = await numResponse.json();
+        const playlistsData = await playlistsResponse.json();
+
+        setNum(numData);
+        setPlaylists(playlistsData);
+      } catch (err) {
+        console.error("Error fetching data:", err);
       }
     };
     fetchData();
-  },[]);
-
-  const [playlists,setPlaylists]=useState([])
-  useEffect(()=>{
-    const fetchData=async()=>{
-      try{
-        const response=await fetch("/api/getPlaylists");
-        if(!response.ok){
-          throw new Error(`Error fetching data: ${response.statusText}`);
-        }
-        const data=await response.json();
-        setPlaylists(data);
-      }catch(err){
-        console.error("Error fetching playlists:",err);
-      }
-    };
-    fetchData();
-  },[]);
+  }, []);
 
   return (
-    <div className={styles.container} style={minimize ? { margin: "0 auto"} : null} >
-      {playlists.map((playlist,index) => {
+    <div className={styles.container} style={minimize ? { margin: "0 auto" } : null}>
+      {playlists.map((playlist, index) => {
         return (
-          <section className={styles.playlist} key={playlist.id} onClick={()=>{sendPlaylistIdToParent(playlist.id)}}>
-            {/* can't pass the "sendPlaylistIdToParent" function with paranthesis to the "onClick "directly as it'll automatically execute the function so instead what we do is we create and anonymous function and write our function call inside that function */}
+          <section
+            className={styles.playlist}
+            key={playlist.id}
+            onClick={() => {
+              sendPlaylistIdToParent(playlist.id);
+            }}
+          >
             <img src={playlistPosters[index]} alt="" />
             {!minimize && (
               <div className={styles.playlistInfo}>

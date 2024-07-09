@@ -1,8 +1,17 @@
 import prisma from "@/lib/prisma";
+import NodeCache from "node-cache";
+
+// const cache=new NodeCache({stdTTL:600}) // 600 seconds i.e. 10 minutes
+const cache=new NodeCache() // cache will forever be there
 
 export default async function getCurrentPlaylist(req, res) {
   const Id = req.query.id;
-  let currentPlaylistInfo = {};
+  const cachedPlaylist=cache.get(Id);
+  if(cachedPlaylist){
+    return res.status(200).json(cachedPlaylist);
+  }
+  try{
+    let currentPlaylistInfo = {};
   const currentPlaylist = await prisma.playlist.findFirst({
     where: { id: Id },
     select: {
@@ -16,19 +25,15 @@ export default async function getCurrentPlaylist(req, res) {
       songId: true,
     },
   });
-  // console.log(songIds);
   const response1 = await prisma.playlistSong.findFirst({
     where: { playlistId: Id },
     select: {
       poster: true,
     },
   });
-  // console.log(response1);
-  // const songIds = response.map((item) => ({ songId: item.songId }));
   let songInfo = [];
   await Promise.all(
     songIds.map(async (songId) => {
-      // console.log(songId);
       let response = await prisma.song.findFirst({
         where: { id: songId.songId },
       });
@@ -48,6 +53,11 @@ export default async function getCurrentPlaylist(req, res) {
   currentPlaylistInfo.poster = response1.poster;
   currentPlaylistInfo.songInfo = songInfo;
   currentPlaylistInfo.id = Id;
-  res.json(currentPlaylistInfo);
+  cache.set(Id,currentPlaylistInfo);
   res.status(200).json(currentPlaylistInfo);
+  }
+  catch(error){
+    console.error("Error fetcing playlist:", error);
+    res.status(500).json({message:"Internal server error"});
+  }
 }
