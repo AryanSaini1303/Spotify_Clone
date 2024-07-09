@@ -30,7 +30,7 @@ export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo,
         <div className={styles.songs}>
           {currPlayInfo.length!=0&&(currPlayInfo.songInfo.map((song, index) => {
             return (
-              <PlaylistSong song={song} index={index} getCurrentSongInfo={getCurrentSongInfo} setCurrentSongId={setCurrentSongId} currentSongId={currentSongId}/>
+              <PlaylistSong song={song} index={index} getCurrentSongInfo={getCurrentSongInfo} setCurrentSongId={setCurrentSongId} currentSongId={currentSongId} playlistId={currPlayInfo.id}/>
             );
           }))}
         </div>

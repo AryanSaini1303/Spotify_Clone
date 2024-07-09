@@ -66,7 +66,7 @@ export default function Content() {
     setDefaultSongRender(false);
   }
   function getPlayFromPlayerSection(id,flag){
-    console.log(flag);
+    // console.log(flag);
     setPlayerPlaylistId(id);
     !flag?setPlay(!play):setPlay(true);
   }
