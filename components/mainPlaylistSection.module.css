@@ -52,6 +52,7 @@
 .playbutton img{
     height: 0.9rem;
     width: 0.9rem;
+    margin-left: 1.5px;
 }
 .infoSection{
     display: flex;

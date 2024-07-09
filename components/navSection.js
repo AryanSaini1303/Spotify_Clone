@@ -2,17 +2,19 @@
 import { useEffect, useState } from "react";
 import styles from "./navSection.module.css";
 import Link from "next/link";
-export default function NavSection({ className, minimize, homeFunc, navFlag }) {
+export default function NavSection({ className, minimize, homeFunc, navFlag, searchFunc }) {
   const [homeColor, setHomeColor] = useState("rgb(122, 122, 122)");
   function handleHomeClick() {
     setHomeColor("white");
     setSearchColor("rgb(122, 122, 122)");
     homeFunc("");
+    searchFunc(false);
   }
   const [searchColor, setSearchColor] = useState("rgb(122, 122, 122)");
   function handleSearchClick() {
     setHomeColor("rgb(122, 122, 122)");
     setSearchColor("white");
+    searchFunc(true);
   }
   useEffect(()=>{
     if (!navFlag) {

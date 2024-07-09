@@ -7,6 +7,7 @@ import LibSection from "@/components/libSection";
 import { useEffect, useState } from "react";
 import styles from "./content.module.css";
 import PlaylistSection from "./playlistSection";
+import SearchSection from "./searchSection";
 
 export default function Content() {
   const [minLib, setMinLib] = useState(true);
@@ -16,6 +17,7 @@ export default function Content() {
   const [currentSongInfo, setCurrentSongInfo] = useState();
   const [play,setPlay]=useState(false);
   const [playerPlaylistId,setPlayerPlaylistId]=useState();
+  const [searchSectionflag,setSearchSectionflag]=useState(false);
   useEffect(() => {
     currentSongInfo &&
       window.localStorage.setItem(
@@ -52,6 +54,7 @@ export default function Content() {
 
   function getplaylistIdFromChild(id) {
     setPlaylistId(id);
+    setSearchSectionflag(false);
     setNavSectionFlag(false);
   }
 
@@ -70,7 +73,10 @@ export default function Content() {
     setPlayerPlaylistId(id);
     !flag?setPlay(!play):setPlay(true);
   }
-  // console.log(playerPlaylistId);
+  function getSearchSectionFlag(flag){
+    setSearchSectionflag(flag);
+  }
+  console.log(searchSectionflag);
   useEffect(() => {
     if (!playlistId) {
       setNavSectionFlag(true);
@@ -94,6 +100,7 @@ export default function Content() {
         minimize={minLib}
         homeFunc={setPlaylistId}
         navFlag={navSectionFlag}
+        searchFunc={getSearchSectionFlag}
       />
       <LibSection
         className={!minLib ? styles.libSection : styles.minLibSection}
@@ -123,6 +130,7 @@ export default function Content() {
           className={mainSectionClass}
           playlistPosters={playlistPosters}
           sendPlaylistIdToParent={getplaylistIdFromChild}
+          searchSectionflag={searchSectionflag}
         />
       ) : (
         <PlaylistSection
@@ -131,6 +139,7 @@ export default function Content() {
           getCurrentSongInfo={getCurrentSongInfo}
           play={play}
           playerPlaylistId={playerPlaylistId}
+          searchSectionflag={searchSectionflag}
         />
       )}
     </div>

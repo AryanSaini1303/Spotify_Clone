@@ -3,12 +3,19 @@ import MainPlaylistSection from "./mainPlaylistSection";
 import MainScreenShade from "./mainScreenShade";
 import styles from "./mainSection.module.css";
 import { Dosis } from "next/font/google";
+import SearchSection from "./searchSection";
 
 const dosis = Dosis({
   weight: "700",
   subsets: ["latin"],
 });
-export default function MainSection({ className, playlists, playlistPosters, sendPlaylistIdToParent }) {
+export default function MainSection({
+  className,
+  playlists,
+  playlistPosters,
+  sendPlaylistIdToParent,
+  searchSectionflag,
+}) {
   const time = new Date().getHours();
   let greeting;
   if (time >= 5 && time < 12) {
@@ -27,15 +34,21 @@ export default function MainSection({ className, playlists, playlistPosters, sen
   return (
     <>
       <div className={className}>
-        <MainScreenShade playlists={playlists} playlistId={childData}/>
-        <div className={styles.container}>
-          <h1 className={dosis.className}>{greeting}</h1>
-          <MainPlaylistSection
-            playlistPosters={playlistPosters}
-            sendDataToParent={handleDataFromChild}
-            sendPlaylistIdToParent={sendPlaylistIdToParent}
-          />
-        </div>
+        {searchSectionflag ? (
+          <SearchSection />
+        ) : (
+          <>
+            <MainScreenShade playlists={playlists} playlistId={childData} />
+            <div className={styles.container}>
+              <h1 className={dosis.className}>{greeting}</h1>
+              <MainPlaylistSection
+                playlistPosters={playlistPosters}
+                sendDataToParent={handleDataFromChild}
+                sendPlaylistIdToParent={sendPlaylistIdToParent}
+              />
+            </div>
+          </>
+        )}
       </div>
     </>
   );
