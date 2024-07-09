@@ -67,6 +67,7 @@ export default function PlayerSection({
       setPlay(false);
       setProgressBarValue(0);
       songRef.current.currentTime = 0;
+      playStatus();
     }
   }
 
