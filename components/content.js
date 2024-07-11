@@ -76,7 +76,7 @@ export default function Content() {
   function getSearchSectionFlag(flag){
     setSearchSectionflag(flag);
   }
-  console.log(searchSectionflag);
+  // console.log(searchSectionflag);
   useEffect(() => {
     if (!playlistId) {
       setNavSectionFlag(true);

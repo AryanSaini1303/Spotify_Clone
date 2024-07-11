@@ -30,6 +30,7 @@ model Song {
   playlists   PlaylistSong[] // Relation to PlaylistSong
   artistPoster String?   // Artist's image
   artistDescription String? // Artist's Description
+  document          Unsupported("tsvector") // Define as Unsupported
 
   @@map(name: "songs") // Map this model to the "songs" table in the database
 }

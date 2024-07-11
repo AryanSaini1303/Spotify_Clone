@@ -21,7 +21,6 @@ export default function SearchSection() {
     const res = await fetch(`/api/getSearchedSongs?query=${query}`);
     const data = await res.json();
     setResults(data);
-    console.log(results);
   };
   return (
     <section className={styles.searchContainer}>
