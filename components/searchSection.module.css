@@ -1,3 +1,30 @@
-.text{
-    z-index: 100;
+#songInput{
+    height: 3rem;
+    width: 18rem;
+    /* font-weight: 550; */
+    outline: none;
+    word-spacing: 0.2px;
+    border-radius: 2rem;
+    font-size: 14px;
+    border:1px solid #121212;
+    background-color: #252525;
+    padding: 0 2.3rem;
+    color: white;
+    transition: 0.15s ease-in-out;
+}
+.searchComponent{
+    position: relative;
+}
+.searchComponent .searchImg{
+    position: absolute;
+    top: 1rem;
+    left: 0.8rem;
+}
+#songInput:hover{
+    background-color: #2b2b2b;
+    border:1px solid #5e5e5e
+}
+#songInput:focus{
+    border: 2px solid white;
+    outline: none;
 }
