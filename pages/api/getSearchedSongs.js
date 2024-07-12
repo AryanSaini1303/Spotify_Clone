@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 
   try {
     const results = await prisma.$queryRaw`
-      SELECT id, title, artist, duration, poster, "artistDescription", "artistPoster"
+      SELECT id, title, artist, duration, poster
       FROM "songs"
       WHERE to_tsvector('english', title || ' ' || artist) @@ plainto_tsquery('english', ${query});
     `;
