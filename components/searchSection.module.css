@@ -19,6 +19,7 @@
     position: absolute;
     top: 1rem;
     left: 0.8rem;
+    pointer-events: none;
 }
 #songInput:hover{
     background-color: #2b2b2b;
