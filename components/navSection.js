@@ -14,6 +14,7 @@ export default function NavSection({ className, minimize, homeFunc, navFlag, sea
   function handleSearchClick() {
     setHomeColor("rgb(122, 122, 122)");
     setSearchColor("white");
+    homeFunc("");
     searchFunc(true);
   }
   useEffect(()=>{
@@ -25,6 +26,7 @@ export default function NavSection({ className, minimize, homeFunc, navFlag, sea
       setHomeColor("white");
     }
   },[navFlag]);
+  // console.log(navFlag);
   return (
     <>
       <div className={className}>

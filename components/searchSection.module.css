@@ -2,7 +2,7 @@
     height: 3rem;
     width: 18rem;
     /* font-weight: 550; */
-    outline: none;
+    /* outline: none; */
     word-spacing: 0.2px;
     border-radius: 2rem;
     font-size: 14px;
@@ -25,7 +25,67 @@
     background-color: #2b2b2b;
     border:1px solid #5e5e5e
 }
-#songInput:focus{
-    border: 2px solid white;
-    outline: none;
+.song{
+    display: grid;
+    grid-template-columns: 1fr 9fr 0.5fr 0.5fr;
+    transition: 0.15s all ease-in-out;
+    padding: 0.5rem;
+    border-radius: 10px;
+    margin: 0.5rem 0;
+    width: 50%;
+    gap: 0.8rem;
+    cursor: pointer;
+    user-select: none;
+}
+.song>img{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 5px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.info *{
+    margin: 0;
+    font-weight: 600;
+}
+.info h4{
+    font-size: 0.95rem;
+}
+.info h6{
+    font-size: 0.75rem;
+}
+.song time{
+    font-size: 0.8rem;
+    margin: auto 0;
+}
+.songsSection>h1{
+    font-size: 1.6rem;
+    margin: 0;
+}
+.song:hover{
+    background-color: #2b2b2b;
+}
+.songsSection{
+    margin: 2rem 0;
+}
+.song:active{
+    opacity: 0.8;
+    background-color: #1f1f1f;
+    transform: scale(0.99,0.99);
+}
+.circle{
+    height: 0.2rem;
+    width: 0.2rem;
+    background-color: rgba(255, 255, 255, 0.747);
+    border-radius: 50%;
+}
+.options{
+    display: flex;
+    gap: 0.2rem;
+    margin: auto 0;
+    padding: 0.5rem 0;
+    justify-content: center;
 }
