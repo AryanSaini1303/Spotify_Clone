@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         artistPoster: true,
       }
     });
-    console.log(results);
+    // console.log(results);
     res.status(200).json(results);
   } catch (error) {
     console.error(error);
