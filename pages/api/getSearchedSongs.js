@@ -9,11 +9,23 @@ export default async function handler(req, res) {
   }
 
   try {
-    const results = await prisma.$queryRaw`
-      SELECT id, title, artist, duration, poster
-      FROM "songs"
-      WHERE to_tsvector('english', title || ' ' || artist) @@ plainto_tsquery('english', ${query});
-    `;
+    const results = await prisma.song.findMany({
+      where: {
+        OR: [
+          { title: { contains: query, mode: 'insensitive' } },
+          { artist: { contains: query, mode: 'insensitive' } }
+        ]
+      },
+      select: {
+        id: true,
+        title: true,
+        artist: true,
+        duration: true,
+        poster: true,
+        artistDescription: true,
+        artistPoster: true,
+      }
+    });
     console.log(results);
     res.status(200).json(results);
   } catch (error) {
