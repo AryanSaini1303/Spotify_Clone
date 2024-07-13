@@ -1,26 +1,26 @@
-.navs img{
-    height: 1.2rem;
-    width: 1.2rem;
-    filter: invert(100%);
+.navs img {
+  height: 1.2rem;
+  width: 1.2rem;
+  filter: invert(100%);
 }
-.navs button{
-    background-color: #121212;
-    border: none;
-    border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.5;
-    transition: 0.2s all ease-in-out;
-    cursor: pointer;
+.navs button {
+  background-color: #121212;
+  border: none;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
 }
-.navs button:hover{
-    background-color: #3332329c;
-    opacity: 1;
+.navs button:hover {
+  background-color: #3332329c;
+  opacity: 1;
 }
-.navs{
-    display: flex;
-    justify-content: end;
+.navs {
+  display: flex;
+  justify-content: flex-end;
 }

@@ -25,12 +25,12 @@ model Song {
   id          String     @id @default(cuid()) // Unique identifier with default value
   title       String     // Title of the song
   artist      String     // Artist of the song
-  poster      String?     // Poster of the song
+  poster      String?    // Poster of the song
   duration    Int        // Duration of the song in seconds
   playlists   PlaylistSong[] // Relation to PlaylistSong
   artistPoster String?   // Artist's image
   artistDescription String? // Artist's Description
-  document          Unsupported("tsvector") // Define as Unsupported
+  playlistIds Json?  // JSON field to store playlist IDs
 
   @@map(name: "songs") // Map this model to the "songs" table in the database
 }

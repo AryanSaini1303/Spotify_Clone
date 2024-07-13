@@ -6,7 +6,7 @@ export default function InfoSection({ className, flagFunc, info }) {
     <>
       <div className={className}>
         <header className={styles.navs} onClick={flagFunc}>
-          <button><img src="/cross.svg" alt="" /></button>
+          <button><img src="/cross.svg" alt="exit" /></button>
         </header>
         <InfoSongSection info={info}/>
         <InfoArtistSection info={info}/>

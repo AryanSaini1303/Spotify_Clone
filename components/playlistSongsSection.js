@@ -23,7 +23,7 @@ export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo,
           <h5>#</h5>
           <h5>Title</h5>
           <h5>
-            <img src="/clock.svg" alt="" />
+            <img src="/clock.svg" alt="Duration" />
           </h5>
         </header>
         <hr />

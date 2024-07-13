@@ -50,13 +50,13 @@ export default function MainPlaylistSection({ sendDataToParent, playlistPosters,
             onMouseLeave={() => handleMouseLeave(playlist.id)}
           >
             <div className={styles.infoSection}>
-              <img src={playlistPosters[index]} alt="" />
+              <img src={playlistPosters[index]} alt="Playlist's Poster" />
               <h4>{playlist.name}</h4>
             </div>
             {mouseEnter[playlist.id] && (
               <div className={styles.playbuttonContainer} onClick={handlePlayButtonClick}>
                 <div className={styles.playbutton}>
-                  <img src="playButton.svg" alt="" />
+                  <img src="playButton.svg" alt="Play Button" />
                 </div>
               </div>
             )}

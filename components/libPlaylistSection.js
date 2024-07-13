@@ -40,7 +40,7 @@ export default function LibPlaylistSection({ minimize, playlistPosters, sendPlay
               sendPlaylistIdToParent(playlist.id);
             }}
           >
-            <img src={playlistPosters[index]} alt="" />
+            <img src={playlistPosters[index]} alt="Playlist's Poster" />
             {!minimize && (
               <div className={styles.playlistInfo}>
                 <h4 className="Name">{playlist.name}</h4>

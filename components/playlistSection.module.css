@@ -6,7 +6,7 @@
 .headerSection{
     display: flex;
     gap: 1.5rem;
-    align-items: end;
+    align-items: flex-end;
     margin-top: 4rem;
     position: relative;
     z-index: 100;

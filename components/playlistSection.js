@@ -59,7 +59,7 @@ export default function PlaylistSection({
           {dataFlag ? (
             <>
               <header className={styles.headerSection}>
-                <img src={currPlayInfo.poster} alt="" />
+                <img src={currPlayInfo.poster} alt="Playlist's Poster" />
                 <div className={styles.playlistInfo}>
                   <h5>Playlist</h5>
                   <h1>{currPlayInfo.name}</h1>

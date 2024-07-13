@@ -32,13 +32,13 @@ export default function PlaylistSong({ song, index, getCurrentSongInfo, setCurre
     >
       <header className={styles.firstInfo}>
         {hover && localStorage.getItem('currentSongId')!=song.id? (
-          <img src="/playButton.svg" alt="" className={styles.playButton} />
+          <img src="/playButton.svg" alt="Play" className={styles.playButton} />
         ) : (
           <h5 style={localStorage.getItem('currentSongId') === song.id&&localStorage.getItem('currentId')===playlistId ? onClickStyle : {}}>{index + 1}</h5>
         )}
       </header>
       <div className={styles.songCard}>
-        <img src={song.poster} alt="" />
+        <img src={song.poster} alt="Song's Poster" />
         <div className={styles.songDetails}>
           <h4 style={localStorage.getItem('currentSongId') === song.id&&localStorage.getItem('currentId')===playlistId ? onClickStyle : {}}>{song.title}</h4>
           <h5>{song.artist}</h5>

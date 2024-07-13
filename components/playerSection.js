@@ -11,7 +11,7 @@ export default function PlayerSection({
   playStatus,
   songCurrentPlaylistId
 }) {
-  // console.log(info);
+  // console.log(songCurrentPlaylistId);
   const progressRef = useRef(null);
   const playPauseRef = useRef(null);
   const songRef = useRef(null);
@@ -117,13 +117,13 @@ export default function PlayerSection({
       <>
         <section className={className}>
           <section className={styles.songCard}>
-            <img src={info.poster} alt="" />
+            <img src={info.poster} alt="Song's Poster" />
             <div className={styles.songDetails}>
               <h5>{info.title}</h5>
               <h6>{info.artist}</h6>
             </div>
             <div className={styles.add}>
-              <img src="/add.svg" alt="" />
+              <img src="/add.svg" alt="Add Button" />
             </div>
           </section>
           <section className={styles.player}>

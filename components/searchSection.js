@@ -77,7 +77,7 @@ export default function SearchSection() {
               onMouseEnter={()=>{handldMouseEnter(song.id)}}
               onMouseLeave={()=>{handldMouseLeave(song.id)}}
             >
-              <img src={song.poster} alt="" />
+              <img src={song.poster} alt="Song's Poster" />
               <div className={styles.info}>
                 <h4 className={`${styles.title}`}>{song.title}</h4>
                 <h6 className={`${styles.artist}`}>{song.artist}</h6>

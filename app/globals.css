@@ -4,13 +4,8 @@ body{
     overflow: hidden;
 }
 ::-webkit-scrollbar {
-    width: 5px;
-    border-radius: 10px;
+    width: 0;
   }
   ::-webkit-scrollbar-thumb {
-    background: #2e2e2e;
-    border-radius: 10px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #424242;
+    background: #2e2e2e00;
   }

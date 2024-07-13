@@ -3,7 +3,7 @@ export default function InfoArtistSection({ info }) {
   return (
     info && (
       <div className={styles.artistCard}>
-        <img src={info.artistPoster} alt="" />
+        <img src={info.artistPoster} alt="Artist's Poster" />
         <section className={styles.info}>
           <h4>{info.artist}</h4>
           <p>{info.artistDescription}</p>

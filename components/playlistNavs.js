@@ -16,16 +16,16 @@ export default function PlaylistNavs({ id, currentId, play }) {
         <div className={styles.playButton}>
           <img
             src={currentFlag&&play ? "/pause.svg" : "/playButton.svg"}
-            alt=""
+            alt="Play/Pause"
             style={currentFlag&&play ? null : { marginLeft: "3px" }}
           />
         </div>
         <div className={styles.shuffleButton}>
-          <img src="/shuffle.svg" alt="" />
+          <img src="/shuffle.svg" alt="Shuffle" />
         </div>
       </div>
       <div className={styles.search}>
-        <img src="/search.svg" alt="" />
+        <img src="/search.svg" alt="Search" />
       </div>
     </section>
   );

@@ -12,7 +12,11 @@ export default async function getNumSongsPlaylist(req, res) {
     return res.status(200).json(cachedData);
   }
 
-  const playlists = await getPlaylists();
+  const playlists = await prisma.playlist.findMany({
+    select: {
+      id: true,
+    },
+  });
   let num = await Promise.all(
     playlists.map(async (playlist) => {
       const count = await prisma.playlist.findFirst({
