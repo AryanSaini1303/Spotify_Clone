@@ -15,7 +15,7 @@ export default function SearchSection({getSearchedSongInfo}) {
 
   function handleChange(e) {
     setResults(undefined);
-    if (e.target.value.length === 0) {
+    if (e.target.value.length === 0 || e.target.value.trim().length===0) {
       setInputFlag(false);
     } else {
       setInputFlag(true);
@@ -27,7 +27,7 @@ export default function SearchSection({getSearchedSongInfo}) {
   };
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      if (query) {
+      if (query.trim()) {
         handleSearch();
       }
     }, 300);
@@ -35,7 +35,7 @@ export default function SearchSection({getSearchedSongInfo}) {
     return () => clearTimeout(delayDebounceFn);
   }, [query]);
   const handleSearch = async () => {
-    const res = await fetch(`/api/getSearchedSongs?query=${query}`);
+    const res = await fetch(`/api/getSearchedSongs?query=${query.trim()}`);
     const data = await res.json();
     setResults(data);
   };
