@@ -1,5 +1,4 @@
 import prisma from "@/lib/prisma";
-import getPlaylists from "@/data/playlists";
 import NodeCache from "node-cache";
 
 // const cache=new NodeCache({stdTTL:600}) // 600 seconds i.e. 10 minutes
