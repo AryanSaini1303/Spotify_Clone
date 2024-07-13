@@ -16,6 +16,7 @@ export default function MainSection({
   sendPlaylistIdToParent,
   searchSectionflag,
   play,
+  getSearchedSongInfo
 }) {
   const time = new Date().getHours();
   let greeting;
@@ -36,7 +37,7 @@ export default function MainSection({
     <>
       <div className={className}>
         {searchSectionflag ? (
-          <SearchSection />
+          <SearchSection getSearchedSongInfo={getSearchedSongInfo}/>
         ) : (
           <>
             <MainScreenShade playlists={playlists} playlistId={childData} />

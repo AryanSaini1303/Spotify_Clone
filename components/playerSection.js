@@ -22,6 +22,8 @@ export default function PlayerSection({
   const [songDuration, setSongDuration] = useState(0);
   const [songCurrentTime, setSongCurrentTime] = useState(0);
   const isFirstRender=useRef(true);
+  console.log(play);
+  console.log(info)
   useEffect(() => {
     if (songRef.current) {
       songRef.current.onloadedmetadata = () => {
@@ -35,6 +37,7 @@ export default function PlayerSection({
       songRef.current.load();
       songRef.current.play();
       if(!defaultSongRender){
+        console.log("Here");
         setPlay(true);
       }
       if (!isFirstRender.current) {
@@ -47,6 +50,7 @@ export default function PlayerSection({
   }, [info]);
 
   function updateProgressBar() {
+    // setPlay(true);
     if (songRef.current && progressRef.current) {
       progressRef.current.value = songRef.current.currentTime;
       setSongCurrentTime(

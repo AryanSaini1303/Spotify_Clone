@@ -66,6 +66,7 @@ export default function Content() {
   function getCurrentSongInfo(info) {
     setCurrentSongInfo(info);
     setDefaultSongRender(false);
+    localStorage.removeItem("playSearchedSongId")
   }
   function getPlayFromPlayerSection(id, flag) {
     setPlayerPlaylistId(id);
@@ -74,7 +75,10 @@ export default function Content() {
   function getSearchSectionFlag(flag) {
     setSearchSectionflag(flag);
   }
-  // console.log(searchSectionflag);
+  function getSearchedSongInfo(song){
+    setCurrentSongInfo(song);
+    setDefaultSongRender(false);
+  }
   useEffect(() => {
     if (!playlistId) {
       setNavSectionFlag(true);
@@ -130,6 +134,7 @@ export default function Content() {
           sendPlaylistIdToParent={getplaylistIdFromChild}
           searchSectionflag={searchSectionflag}
           play={play}
+          getSearchedSongInfo={getSearchedSongInfo}
         />
       ) : (
         <PlaylistSection
@@ -139,6 +144,7 @@ export default function Content() {
           play={play}
           playerPlaylistId={playerPlaylistId}
           searchSectionflag={searchSectionflag}
+          getSearchedSongInfo={getSearchedSongInfo}
         />
       )}
     </div>

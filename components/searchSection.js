@@ -6,11 +6,12 @@ const ubuntu = Ubuntu({
   weight: "700",
   subsets: ["latin"],
 });
-export default function SearchSection() {
+export default function SearchSection({getSearchedSongInfo}) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState();
   const [inputFlag, setInputFlag] = useState(false);
   const [hover, setHover] = useState({});
+  const [songId,setSongId]=useState();
 
   function handleChange(e) {
     setResults(undefined);
@@ -21,6 +22,9 @@ export default function SearchSection() {
     }
     setQuery(e.target.value);
   }
+  let onClickStyle = {
+    color: "#1FDF64"
+  };
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (query) {
@@ -35,8 +39,6 @@ export default function SearchSection() {
     const data = await res.json();
     setResults(data);
   };
-  // console.log(results);
-  // console.log(inputFlag);
   function handldMouseEnter(id) {
     setHover((prevStates) => ({ ...prevStates, [id]: true }));
   }
@@ -47,6 +49,15 @@ export default function SearchSection() {
     e.stopPropagation();
     e.preventDefault();
   }
+  function handleSongClick(song){
+    localStorage.removeItem("currentId");
+    getSearchedSongInfo(song);
+    song&&localStorage.setItem("playSearchedSongId",song.id);
+    setSongId(localStorage.getItem("playSearchedSongId"));
+  }
+  useEffect(()=>{
+    setSongId(localStorage.getItem("playSearchedSongId"));
+  },[results])
   return (
     <section className={styles.searchContainer}>
       <header className={styles.searchComponent}>
@@ -70,17 +81,18 @@ export default function SearchSection() {
           <h1 className={ubuntu.className}>Songs</h1>
         )}
         {results && results.length != [] ? (
-          results.map((song) => (
+          results.map((song) =>(
             <div
               className={styles.song}
               key={song.id}
               onMouseEnter={()=>{handldMouseEnter(song.id)}}
               onMouseLeave={()=>{handldMouseLeave(song.id)}}
+              onClick={()=>{handleSongClick(song)}}
             >
               <img src={song.poster} alt="Song's Poster" />
               <div className={styles.info}>
-                <h4 className={`${styles.title}`}>{song.title}</h4>
-                <h6 className={`${styles.artist}`}>{song.artist}</h6>
+                <h4 className={`${styles.title}`} style={songId==song.id?onClickStyle:null}>{song.title}</h4>
+                <h6 className={`${styles.artist}`} style={songId==song.id?onClickStyle:null}>{song.artist}</h6>
               </div>
               <time datetime={song.duration}>
                 {Math.floor(song.duration / 60)}:{song.duration % 60}
