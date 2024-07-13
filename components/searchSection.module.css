@@ -26,13 +26,12 @@
     border:1px solid #5e5e5e
 }
 .song{
-    display: grid;
-    grid-template-columns: 1fr 9fr 0.5fr 0.5fr;
+    display: flex;
     transition: 0.15s all ease-in-out;
     padding: 0.5rem;
     border-radius: 10px;
     margin: 0.5rem 0;
-    width: 50%;
+    width: fit-content;
     gap: 0.8rem;
     cursor: pointer;
     user-select: none;
@@ -46,6 +45,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    width: 20rem;
 }
 .info *{
     margin: 0;

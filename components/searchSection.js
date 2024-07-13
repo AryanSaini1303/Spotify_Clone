@@ -85,13 +85,11 @@ export default function SearchSection() {
               <time datetime={song.duration}>
                 {Math.floor(song.duration / 60)}:{song.duration % 60}
               </time>
-              {hover[song.id] && (
-                <div className={styles.options} onClick={handleOptClick}>
+                <div className={styles.options} onClick={handleOptClick} style={!hover[song.id]?{opacity:"0",pointerEvents:"none"}:null}>
                   <div className={styles.circle}></div>
                   <div className={styles.circle}></div>
                   <div className={styles.circle}></div>
                 </div>
-              )}
             </div>
           ))
         ) : results && results.length == 0 && inputFlag ? (
