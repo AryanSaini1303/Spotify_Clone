@@ -2,9 +2,17 @@
 import { useEffect, useState } from "react";
 import styles from "./mainPlaylistSection.module.css";
 
-export default function MainPlaylistSection({ sendDataToParent, playlistPosters, sendPlaylistIdToParent }) {
+export default function MainPlaylistSection({
+  sendDataToParent,
+  playlistPosters,
+  sendPlaylistIdToParent,
+  play
+}) {
   const [mouseEnter, setMouseEnter] = useState({});
-
+  const [currentId, setCurrentId] = useState();
+  useEffect(() => {
+    setCurrentId(localStorage.getItem("currentId"));
+  }, [play]);
   function handleMouseEnter(id) {
     setMouseEnter((prevStates) => ({ ...prevStates, [id]: true }));
     sendDataToParent(id);
@@ -12,7 +20,7 @@ export default function MainPlaylistSection({ sendDataToParent, playlistPosters,
 
   function handleMouseLeave(id) {
     setMouseEnter((prevStates) => ({ ...prevStates, [id]: false }));
-    sendDataToParent('default');
+    sendDataToParent("default");
   }
 
   const [playlists, setPlaylists] = useState([]);
@@ -37,14 +45,15 @@ export default function MainPlaylistSection({ sendDataToParent, playlistPosters,
     e.stopPropagation(); // Stops the click event from propagating to the parent elements
     e.preventDefault(); // Prevents the default link behavior
   }
-
   return (
     <div className={styles.container}>
       {playlists.map((playlist, index) => {
         return (
           <section
             key={playlist.id}
-            onClick={()=>{sendPlaylistIdToParent(playlist.id)}}
+            onClick={() => {
+              sendPlaylistIdToParent(playlist.id);
+            }}
             className={styles.playlist}
             onMouseEnter={() => handleMouseEnter(playlist.id)}
             onMouseLeave={() => handleMouseLeave(playlist.id)}
@@ -54,9 +63,18 @@ export default function MainPlaylistSection({ sendDataToParent, playlistPosters,
               <h4>{playlist.name}</h4>
             </div>
             {mouseEnter[playlist.id] && (
-              <div className={styles.playbuttonContainer} onClick={handlePlayButtonClick}>
+              <div
+                className={styles.playbuttonContainer}
+                onClick={handlePlayButtonClick}
+              >
                 <div className={styles.playbutton}>
-                  <img src="playButton.svg" alt="Play Button" />
+                  <img
+                    src={play&&currentId===playlist.id ? "pause.svg" : "playButton.svg"}
+                    alt="Play Button"
+                    style={
+                      play&&currentId===playlist.id ?{ marginLeft: "-0.5px" }:{ marginLeft: "1.5px" }
+                    }
+                  />
                 </div>
               </div>
             )}

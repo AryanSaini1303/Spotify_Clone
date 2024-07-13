@@ -7,7 +7,6 @@ import LibSection from "@/components/libSection";
 import { useEffect, useState } from "react";
 import styles from "./content.module.css";
 import PlaylistSection from "./playlistSection";
-import SearchSection from "./searchSection";
 
 export default function Content() {
   const [minLib, setMinLib] = useState(true);
@@ -15,9 +14,9 @@ export default function Content() {
   const [navSectionFlag, setNavSectionFlag] = useState(true);
   const [minInfo, setMinInfo] = useState(false);
   const [currentSongInfo, setCurrentSongInfo] = useState();
-  const [play,setPlay]=useState(false);
-  const [playerPlaylistId,setPlayerPlaylistId]=useState();
-  const [searchSectionflag,setSearchSectionflag]=useState(false);
+  const [play, setPlay] = useState(false);
+  const [playerPlaylistId, setPlayerPlaylistId] = useState();
+  const [searchSectionflag, setSearchSectionflag] = useState(false);
   useEffect(() => {
     currentSongInfo &&
       window.localStorage.setItem(
@@ -68,12 +67,11 @@ export default function Content() {
     setCurrentSongInfo(info);
     setDefaultSongRender(false);
   }
-  function getPlayFromPlayerSection(id,flag){
-    // console.log(flag);
+  function getPlayFromPlayerSection(id, flag) {
     setPlayerPlaylistId(id);
-    !flag?setPlay(!play):setPlay(true);
+    !flag ? setPlay(!play) : setPlay(true);
   }
-  function getSearchSectionFlag(flag){
+  function getSearchSectionFlag(flag) {
     setSearchSectionflag(flag);
   }
   // console.log(searchSectionflag);
@@ -131,6 +129,7 @@ export default function Content() {
           playlistPosters={playlistPosters}
           sendPlaylistIdToParent={getplaylistIdFromChild}
           searchSectionflag={searchSectionflag}
+          play={play}
         />
       ) : (
         <PlaylistSection

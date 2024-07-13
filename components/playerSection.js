@@ -22,7 +22,6 @@ export default function PlayerSection({
   const [songDuration, setSongDuration] = useState(0);
   const [songCurrentTime, setSongCurrentTime] = useState(0);
   const isFirstRender=useRef(true);
-
   useEffect(() => {
     if (songRef.current) {
       songRef.current.onloadedmetadata = () => {
