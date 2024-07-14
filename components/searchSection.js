@@ -187,7 +187,7 @@ export default function SearchSection({ getSearchedSongInfo, play }) {
               </>
             ))
           ) : results && results.length == 0 && inputFlag ? (
-            <h1 className={ubuntu.className}>No results found for "{query}"</h1>
+            <h1 className={`${ubuntu.className} ${styles.notFound}`}>No results found for "{query}"</h1>
           ) : (
             inputFlag && <h1 className={ubuntu.className}>Loading...</h1>
           )}
