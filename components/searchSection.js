@@ -92,7 +92,7 @@ export default function SearchSection({getSearchedSongInfo}) {
               <img src={song.poster} alt="Song's Poster" />
               <div className={styles.info}>
                 <h4 className={`${styles.title}`} style={songId==song.id?onClickStyle:null}>{song.title}</h4>
-                <h6 className={`${styles.artist}`} style={songId==song.id?onClickStyle:null}>{song.artist}</h6>
+                <h6 className={`${styles.artist}`}>{song.artist}</h6>
               </div>
               <time datetime={song.duration}>
                 {Math.floor(song.duration / 60)}:{song.duration % 60}
