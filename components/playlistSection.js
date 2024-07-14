@@ -54,7 +54,7 @@ export default function PlaylistSection({
       }:null}
     >
       {searchSectionflag ? (
-        <SearchSection getSearchedSongInfo={getSearchedSongInfo}/>
+        <SearchSection getSearchedSongInfo={getSearchedSongInfo} play={play}/>
       ) : (
         <>
           {dataFlag ? (

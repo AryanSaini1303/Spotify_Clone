@@ -37,7 +37,7 @@ export default function MainSection({
     <>
       <div className={className}>
         {searchSectionflag ? (
-          <SearchSection getSearchedSongInfo={getSearchedSongInfo}/>
+          <SearchSection getSearchedSongInfo={getSearchedSongInfo} play={play}/>
         ) : (
           <>
             <MainScreenShade playlists={playlists} playlistId={childData} />

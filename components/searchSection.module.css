@@ -1,8 +1,6 @@
 #songInput{
     height: 3rem;
     width: 18rem;
-    /* font-weight: 550; */
-    /* outline: none; */
     word-spacing: 0.2px;
     border-radius: 2rem;
     font-size: 14px;
@@ -45,7 +43,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 20rem;
+    width: 25rem;
 }
 .info *{
     margin: 0;
@@ -61,7 +59,7 @@
     font-size: 0.8rem;
     margin: auto 0;
 }
-.songsSection>h1{
+.songsHeading{
     font-size: 1.6rem;
     margin: 0 0.5rem;
 }
@@ -70,6 +68,9 @@
 }
 .songsSection{
     margin: 2rem 0;
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    gap: 1rem;
 }
 .song:active{
     opacity: 0.8;
@@ -85,7 +86,83 @@
 .options{
     display: flex;
     gap: 0.2rem;
-    margin: auto 0;
+    margin: auto 0.5rem auto auto;
     padding: 0.5rem 0;
     justify-content: center;
+}
+.topSong{
+    background-color: #181818;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.15s all ease-in-out;
+    position: relative;
+}
+.topSong>img{
+    height: 6.5rem;
+    width: 6.5rem;
+    margin: 1.5rem;
+    border-radius: 5px;
+}
+.topSong h1{
+    margin: 0 1.5rem;
+    font-size: 2.2rem;
+}
+.topSong .bottomInfo{
+    display: flex;
+    margin: 0 1.5rem;
+    gap: 0.4rem;
+}
+.topSong .bottomInfo *{
+    font-weight: 500;
+}
+.bottomInfo .dot{
+    display: flex;
+    align-items: center;
+    height: 0.25rem;
+    width: 0.25rem;
+    border-radius: 50%;
+    background-color: #A1A1A1;
+    margin: auto 0;
+}
+.bottomInfo .type{
+    color: #A1A1A1;
+}
+.songsSection>section>header{
+    font-size: 1.5rem;
+}
+.songsSection>section>header>h1{
+    margin: 0 0 1rem 0;
+}
+.songsSection .topSong:hover{
+    background-color: #282828;
+}
+.playButton{
+    height: 3.3rem;
+    width: 3.3rem;
+    background-color: #1FDF64;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: absolute;
+    right: 1.3rem;
+    animation: playButtonAnimation 0.15s forwards;
+    transition: 0.2s all ease-in-out;
+}
+@keyframes playButtonAnimation {
+    0%{
+        bottom: 0;
+        opacity: 0;
+    }
+    100%{
+        bottom: 1.3rem;
+        opacity: 1;
+    }
+}
+.playButton:hover{
+    transform: scale(1.05,1.05);
+}
+.playButton:active{
+    transform: scale(1,1);
+    filter: brightness(60%);
 }
