@@ -50,6 +50,7 @@
 }
 .info h4{
     font-size: 0.98rem;
+    transition: 0.2s all ease-in-out;
 }
 .info h6{
     font-size: 0.75rem;
@@ -106,6 +107,7 @@
 .topSong h1{
     margin: 0 1.5rem;
     font-size: 2.2rem;
+    transition: 0.2s all ease-in-out;
 }
 .topSong .bottomInfo{
     display: flex;

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./searchSection.module.css";
 import { Ubuntu } from "next/font/google";
+import SearchedSongsLoader from "./searchedSongsLoader";
 const ubuntu = Ubuntu({
   weight: "700",
   subsets: ["latin"],
@@ -189,7 +190,7 @@ export default function SearchSection({ getSearchedSongInfo, play }) {
           ) : results && results.length == 0 && inputFlag ? (
             <h1 className={`${ubuntu.className} ${styles.notFound}`}>No results found for &quot;{query}&quot;</h1>
           ) : (
-            inputFlag && <h1 className={ubuntu.className}>Loading...</h1>
+            inputFlag &&<SearchedSongsLoader/>
           )}
         </section>
       </section>
