@@ -51,7 +51,6 @@ export default function SearchSection({ getSearchedSongInfo, play }) {
   }
   function handleSongClick(song) {
     if (songId !== song.id || (songId === song.id && !play)) {
-      console.log("here");
       localStorage.removeItem("currentId");
       getSearchedSongInfo(song);
       song && localStorage.setItem("playSearchedSongId", song.id);
@@ -67,7 +66,6 @@ export default function SearchSection({ getSearchedSongInfo, play }) {
   useEffect(() => {
     setSongId(localStorage.getItem("playSearchedSongId"));
   }, [results]);
-  console.log(results);
   return (
     <section className={styles.searchContainer}>
       <header className={styles.searchComponent}>
