@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import styles from "./searchSection.module.css";
 import { Ubuntu } from "next/font/google";
@@ -14,6 +14,7 @@ export default function SearchSection({ getSearchedSongInfo, play }) {
   const [hover, setHover] = useState({});
   const [songId, setSongId] = useState();
   const [topSongHover, setTopSongHover] = useState();
+  const searchRef=useRef(null);
   function handleChange(e) {
     setResults(undefined);
     if (e.target.value.length === 0 || e.target.value.trim().length === 0) {
@@ -67,6 +68,9 @@ export default function SearchSection({ getSearchedSongInfo, play }) {
   useEffect(() => {
     setSongId(localStorage.getItem("playSearchedSongId"));
   }, [results]);
+  useEffect(()=>{
+    searchRef.current.focus();
+  },[])
   return (
     <section className={styles.searchContainer}>
       <header className={styles.searchComponent}>
@@ -83,6 +87,7 @@ export default function SearchSection({ getSearchedSongInfo, play }) {
           placeholder="What do you want to play?"
           tabIndex={0}
           onChange={handleChange}
+          ref={searchRef}
         />
       </header>
       <section className={styles.songsSection}>
