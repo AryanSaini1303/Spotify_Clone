@@ -35,7 +35,7 @@ export default function PlayerSection({
       songRef.current.load();
       songRef.current.play();
       if(!defaultSongRender){
-        console.log("Here");
+        // console.log("Here");
         setPlay(true);
       }
       if (!isFirstRender.current) {
