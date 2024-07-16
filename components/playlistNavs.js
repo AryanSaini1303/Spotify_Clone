@@ -16,6 +16,9 @@ export default function PlaylistNavs({
       if (play) {
         getPauseFromPlaylistNavs(true);
       }
+      else{
+        getPauseFromPlaylistNavs(false);
+      }
     }
   }
   return (

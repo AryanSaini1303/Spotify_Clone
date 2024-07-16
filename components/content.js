@@ -4,7 +4,7 @@ import MainSection from "@/components/mainSection";
 import InfoSection from "@/components/infoSection";
 import NavSection from "@/components/navSection";
 import LibSection from "@/components/libSection";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./content.module.css";
 import PlaylistSection from "./playlistSection";
 
@@ -17,8 +17,8 @@ export default function Content() {
   const [play, setPlay] = useState(false);
   const [playerPlaylistId, setPlayerPlaylistId] = useState();
   const [searchSectionflag, setSearchSectionflag] = useState(false);
-  const [playlistNavsPause,setPlaylistNavsPause]=useState();
-  const [searchSectionPause,setSearchSectionPause]=useState();
+  const [playlistNavsPause,setPlaylistNavsPause]=useState(true);
+  const [searchSectionPause,setSearchSectionPause]=useState(true);
   useEffect(() => {
     currentSongInfo &&
       window.localStorage.setItem(
@@ -29,7 +29,7 @@ export default function Content() {
     let data = window.localStorage.getItem("currentSongInfo");
     !currentSongInfo && setCurrentSongInfo(JSON.parse(data));
     // Then in the end we retrieve our stringified data and parse it to use it as an object again
-    setPlaylistNavsPause(false);
+    !minLib&&setPlaylistNavsPause(false);
   }, [currentSongInfo]);
   const [defaultSongRender, setDefaultSongRender] = useState(true);
 
@@ -86,6 +86,7 @@ export default function Content() {
   function getPauseFromPlaylistNavs(flag){
     setPlaylistNavsPause(flag);
   }
+  console.log(playlistNavsPause);
   function getSearchSectionPause(flag){
     setSearchSectionPause(flag);
   }

@@ -28,23 +28,31 @@ export default function PlayerSection({
   const isFirstRender = useRef(true);
   useEffect(() => {
     if (playlistNavsPause) {
-      setPlay(false);
-      songRef.current.pause();
-      playStatus(songCurrentPlaylistId, false);
+      if (songRef.current) {
+        setPlay(false);
+        songRef.current.pause();
+        playStatus(songCurrentPlaylistId, false);
+      }
+    } else {
+      setPlay(true);
+      songRef.current.play();
+      playStatus(songCurrentPlaylistId, true);
     }
   }, [playlistNavsPause]);
   useEffect(() => {
-    console.log(searchSectionPause);
     if (searchSectionPause) {
+      if (songRef.current) {
       setPlay(false);
       songRef.current.pause();
-      playStatus(songCurrentPlaylistId,false);
+      playStatus(songCurrentPlaylistId, false);
+      }
     } else {
       if (songRef.current) {
+        console.log("here");
         setPlay(true);
         songRef.current.play();
-        playStatus(songCurrentPlaylistId,true);
-      }
+        playStatus(songCurrentPlaylistId, true);
+        }
     }
   }, [searchSectionPause]);
   useEffect(() => {
@@ -106,19 +114,19 @@ export default function PlayerSection({
   }
 
   function handlePlayClick() {
-    getPauseFromPlaylistNavs(false);
-    // playStatus();
     setPlay(!play);
   }
   useEffect(() => {
     if (play) {
       songRef.current.play();
-      playStatus(songCurrentPlaylistId,true);
+      playStatus(songCurrentPlaylistId, true);
+      getPauseFromPlaylistNavs(false);
       getSearchSectionPause(false);
     } else {
       if (songRef.current) {
         songRef.current.pause();
-        playStatus(songCurrentPlaylistId,false);
+        getPauseFromPlaylistNavs(true);
+        playStatus(songCurrentPlaylistId, false);
         getSearchSectionPause(true);
       }
     }
