@@ -84,6 +84,8 @@ export default function PlaylistSection({
                 playerPlay={play}
                 playerPlaylistId={playerPlaylistId}
                 getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
+                getSearchSectionPause={getSearchSectionPause}
+                play={play}
               />
             </>
           ) : (

@@ -1,11 +1,20 @@
 import { useState } from "react";
 import styles from "./playlistSong.module.css";
 
-export default function PlaylistSong({ song, index, getCurrentSongInfo, setCurrentSongId, currentSongId, playlistId }) {
+export default function PlaylistSong({
+  song,
+  index,
+  getCurrentSongInfo,
+  setCurrentSongId,
+  currentSongId,
+  playlistId,
+  getSearchSectionPause,
+  play
+}) {
   // console.log(playlistId);
   // console.log(localStorage.getItem('currentId'));
   const [hover, setHover] = useState(false);
-  currentSongId&&localStorage.setItem('currentSongId',currentSongId);
+  currentSongId && localStorage.setItem("currentSongId", currentSongId);
   function handleMouseEnter() {
     setHover(true);
   }
@@ -15,12 +24,24 @@ export default function PlaylistSong({ song, index, getCurrentSongInfo, setCurre
   }
 
   function handleClick(id) {
-    getCurrentSongInfo(song);
-    setCurrentSongId(id);
+    console.log(id)
+    console.log(play);
+    if(id===currentSongId){
+      if(play){
+        getSearchSectionPause(true);
+      }
+      else{
+        getSearchSectionPause(false);
+      }
+    }
+    else{
+      getCurrentSongInfo(song);
+      setCurrentSongId(id);
+    }
   }
 
   let onClickStyle = {
-    color: "#1FDF64"
+    color: "#1FDF64",
   };
 
   return (
@@ -31,16 +52,34 @@ export default function PlaylistSong({ song, index, getCurrentSongInfo, setCurre
       onClick={() => handleClick(song.id)}
     >
       <header className={styles.firstInfo}>
-        {hover && localStorage.getItem('currentSongId')!=song.id? (
+        {hover && localStorage.getItem("currentSongId") != song.id ? (
           <img src="/playButton.svg" alt="Play" className={styles.playButton} />
         ) : (
-          <h5 style={localStorage.getItem('currentSongId') === song.id&&localStorage.getItem('currentId')===playlistId ? onClickStyle : {}}>{index + 1}</h5>
+          <h5
+            style={
+              localStorage.getItem("currentSongId") === song.id &&
+              localStorage.getItem("currentId") === playlistId
+                ? onClickStyle
+                : {}
+            }
+          >
+            {index + 1}
+          </h5>
         )}
       </header>
       <div className={styles.songCard}>
         <img src={song.poster} alt="Song's Poster" />
         <div className={styles.songDetails}>
-          <h4 style={localStorage.getItem('currentSongId') === song.id&&localStorage.getItem('currentId')===playlistId ? onClickStyle : {}}>{song.title}</h4>
+          <h4
+            style={
+              localStorage.getItem("currentSongId") === song.id &&
+              localStorage.getItem("currentId") === playlistId
+                ? onClickStyle
+                : {}
+            }
+          >
+            {song.title}
+          </h4>
           <h5>{song.artist}</h5>
         </div>
       </div>

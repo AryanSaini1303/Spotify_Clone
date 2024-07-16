@@ -12,9 +12,10 @@ export default function PlaylistNavs({
     id === localStorage.getItem("currentId") && setCurrentFlag(true);
   }, [localStorage.getItem("currentId"), play]);
   function handleClick() {
-    if (localStorage.getItem("currentId") === id && play) {
-      getPauseFromPlaylistNavs(true);
-      setCurrentFlag(false);
+    if (localStorage.getItem("currentId") === id) {
+      if (play) {
+        getPauseFromPlaylistNavs(true);
+      }
     }
   }
   return (

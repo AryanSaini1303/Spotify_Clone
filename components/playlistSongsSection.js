@@ -3,21 +3,33 @@ import PlaylistNavs from "./playlistNavs";
 import PlaylistSong from "./playlistSong";
 import { useEffect, useState } from "react";
 
-export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo, playerPlay, playerPlaylistId, getPauseFromPlaylistNavs }) {
-  const [finalPlay,setFinalPlay]=useState(false);
+export default function PlaylistSongsSection({
+  currPlayInfo,
+  getCurrentSongInfo,
+  playerPlay,
+  playerPlaylistId,
+  getPauseFromPlaylistNavs,
+  getSearchSectionPause,
+  play
+}) {
+  const [finalPlay, setFinalPlay] = useState(false);
   const [currentSongId, setCurrentSongId] = useState(null);
-  // This state should only be in the parent component i.e. PlaylistSongsSection not in the child component i.e. PlaylistSong as each child component maintains its own state and does not know about the state of other child components. 
-  useEffect(()=>{
-    if(playerPlay){
+  // This state should only be in the parent component i.e. PlaylistSongsSection not in the child component i.e. PlaylistSong as each child component maintains its own state and does not know about the state of other child components.
+  useEffect(() => {
+    if (playerPlay) {
       setFinalPlay(true);
-    }
-    else{
+    } else {
       setFinalPlay(false);
     }
-  },[playerPlay])
+  }, [playerPlay]);
   return (
     <section className={styles.container}>
-      <PlaylistNavs id={currPlayInfo.id} currentId={playerPlaylistId} play={finalPlay} getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}/>
+      <PlaylistNavs
+        id={currPlayInfo.id}
+        currentId={playerPlaylistId}
+        play={finalPlay}
+        getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
+      />
       <section className={styles.songsSection}>
         <header className={styles.info}>
           <h5>#</h5>
@@ -28,11 +40,22 @@ export default function PlaylistSongsSection({ currPlayInfo, getCurrentSongInfo,
         </header>
         <hr />
         <div className={styles.songs}>
-          {currPlayInfo.length!=0&&(currPlayInfo.songInfo.map((song, index) => {
-            return (
-              <PlaylistSong song={song} index={index} getCurrentSongInfo={getCurrentSongInfo} setCurrentSongId={setCurrentSongId} currentSongId={currentSongId} playlistId={currPlayInfo.id} key={song.id}/>
-            );
-          }))}
+          {currPlayInfo.length != 0 &&
+            currPlayInfo.songInfo.map((song, index) => {
+              return (
+                <PlaylistSong
+                  song={song}
+                  index={index}
+                  getCurrentSongInfo={getCurrentSongInfo}
+                  setCurrentSongId={setCurrentSongId}
+                  currentSongId={currentSongId}
+                  playlistId={currPlayInfo.id}
+                  key={song.id}
+                  getSearchSectionPause={getSearchSectionPause}
+                  play={play}
+                />
+              );
+            })}
         </div>
       </section>
     </section>
