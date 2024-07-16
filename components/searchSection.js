@@ -52,15 +52,15 @@ export default function SearchSection({ getSearchedSongInfo, play, getSearchSect
     e.preventDefault();
   }
   console.log(play);
+  // function handleSongClick(song) {
+  //   if (songId !== song.id) {
+  //     localStorage.removeItem("currentId");
+  //     getSearchedSongInfo(song);
+  //     song && localStorage.setItem("playSearchedSongId", song.id);
+  //     setSongId(localStorage.getItem("playSearchedSongId"));
+  //   }
+  // }
   function handleSongClick(song) {
-    if (songId !== song.id) {
-      localStorage.removeItem("currentId");
-      getSearchedSongInfo(song);
-      song && localStorage.setItem("playSearchedSongId", song.id);
-      setSongId(localStorage.getItem("playSearchedSongId"));
-    }
-  }
-  function handleTopSongClick(song) {
     // console.log(songId);
     // console.log(song.id);
     // console.log(play);
@@ -140,7 +140,7 @@ export default function SearchSection({ getSearchedSongInfo, play, getSearchSect
                     height={results[0].id === songId && play ? 20 : 30}
                     width={results[0].id === songId && play ? 20 : 30}
                     onClick={() => {
-                      handleTopSongClick(results[0]);
+                      handleSongClick(results[0]);
                     }}
                     style={
                       results[0].id === songId && play
