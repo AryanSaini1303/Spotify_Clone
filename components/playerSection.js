@@ -11,7 +11,9 @@ export default function PlayerSection({
   playStatus,
   songCurrentPlaylistId,
   playlistNavsPause,
-  getPauseFromPlaylistNavs
+  getPauseFromPlaylistNavs,
+  searchSectionPause,
+  getSearchSectionPause,
 }) {
   // console.log(songCurrentPlaylistId);
   const progressRef = useRef(null);
@@ -28,9 +30,23 @@ export default function PlayerSection({
     if (playlistNavsPause) {
       setPlay(false);
       songRef.current.pause();
-      playStatus(songCurrentPlaylistId,false)
+      playStatus(songCurrentPlaylistId, false);
     }
   }, [playlistNavsPause]);
+  useEffect(() => {
+    console.log(searchSectionPause);
+    if (searchSectionPause) {
+      setPlay(false);
+      songRef.current.pause();
+      playStatus(songCurrentPlaylistId,false);
+    } else {
+      if (songRef.current) {
+        setPlay(true);
+        songRef.current.play();
+        playStatus(songCurrentPlaylistId,true);
+      }
+    }
+  }, [searchSectionPause]);
   useEffect(() => {
     if (songRef.current) {
       songRef.current.onloadedmetadata = () => {
@@ -90,18 +106,24 @@ export default function PlayerSection({
   }
 
   function handlePlayClick() {
-    getPauseFromPlaylistNavs(false)
-    playStatus();
-    setPlay((prevPlay) => {
-      const newPlay = !prevPlay;
-      if (newPlay) {
-        songRef.current.play();
-      } else {
-        songRef.current.pause();
-      }
-      return newPlay;
-    });
+    getPauseFromPlaylistNavs(false);
+    // playStatus();
+    setPlay(!play);
   }
+  useEffect(() => {
+    if (play) {
+      songRef.current.play();
+      playStatus(songCurrentPlaylistId,true);
+      getSearchSectionPause(false);
+    } else {
+      if (songRef.current) {
+        songRef.current.pause();
+        playStatus(songCurrentPlaylistId,false);
+        getSearchSectionPause(true);
+      }
+    }
+    console.log(play);
+  }, [play]);
 
   function handleProgressMouseEnter() {
     setProgressMouseEnter(true);

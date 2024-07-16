@@ -17,7 +17,8 @@ export default function MainSection({
   searchSectionflag,
   play,
   getSearchedSongInfo,
-  getPauseFromPlaylistNavs
+  getPauseFromPlaylistNavs,
+  getSearchSectionPause
 }) {
   const time = new Date().getHours();
   let greeting;
@@ -38,7 +39,7 @@ export default function MainSection({
     <>
       <div className={className}>
         {searchSectionflag ? (
-          <SearchSection getSearchedSongInfo={getSearchedSongInfo} play={play}/>
+          <SearchSection getSearchedSongInfo={getSearchedSongInfo} play={play} getSearchSectionPause={getSearchSectionPause}/>
         ) : (
           <>
             <MainScreenShade playlists={playlists} playlistId={childData} />

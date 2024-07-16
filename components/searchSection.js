@@ -7,7 +7,7 @@ const ubuntu = Ubuntu({
   weight: "700",
   subsets: ["latin"],
 });
-export default function SearchSection({ getSearchedSongInfo, play }) {
+export default function SearchSection({ getSearchedSongInfo, play, getSearchSectionPause }) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState();
   const [inputFlag, setInputFlag] = useState(false);
@@ -51,12 +51,30 @@ export default function SearchSection({ getSearchedSongInfo, play }) {
     e.stopPropagation();
     e.preventDefault();
   }
+  console.log(play);
   function handleSongClick(song) {
-    if (songId !== song.id || (songId === song.id && !play)) {
+    if (songId !== song.id) {
       localStorage.removeItem("currentId");
       getSearchedSongInfo(song);
       song && localStorage.setItem("playSearchedSongId", song.id);
       setSongId(localStorage.getItem("playSearchedSongId"));
+    }
+  }
+  function handleTopSongClick(song) {
+    // console.log(songId);
+    // console.log(song.id);
+    // console.log(play);
+    if (songId !== song.id) {
+      localStorage.removeItem("currentId");
+      getSearchedSongInfo(song);
+      song && localStorage.setItem("playSearchedSongId", song.id);
+      setSongId(localStorage.getItem("playSearchedSongId"));
+    }
+    else if(songId===song.id&&play){
+      getSearchSectionPause(true);
+    }
+    else if(songId===song.id&&!play){
+      getSearchSectionPause(false);
     }
   }
   function handleTopSongEnter() {
@@ -122,7 +140,7 @@ export default function SearchSection({ getSearchedSongInfo, play }) {
                     height={results[0].id === songId && play ? 20 : 30}
                     width={results[0].id === songId && play ? 20 : 30}
                     onClick={() => {
-                      handleSongClick(results[0]);
+                      handleTopSongClick(results[0]);
                     }}
                     style={
                       results[0].id === songId && play

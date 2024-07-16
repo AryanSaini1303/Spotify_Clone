@@ -18,6 +18,7 @@ export default function Content() {
   const [playerPlaylistId, setPlayerPlaylistId] = useState();
   const [searchSectionflag, setSearchSectionflag] = useState(false);
   const [playlistNavsPause,setPlaylistNavsPause]=useState();
+  const [searchSectionPause,setSearchSectionPause]=useState();
   useEffect(() => {
     currentSongInfo &&
       window.localStorage.setItem(
@@ -71,8 +72,9 @@ export default function Content() {
     localStorage.removeItem("playSearchedSongId")
   }
   function getPlayFromPlayerSection(id, flag) {
+    console.log(flag);
     setPlayerPlaylistId(id);
-    !flag ? setPlay(!play) : setPlay(true);
+    !flag ? setPlay(false) : setPlay(true);
   }
   function getSearchSectionFlag(flag) {
     setSearchSectionflag(flag);
@@ -84,6 +86,11 @@ export default function Content() {
   function getPauseFromPlaylistNavs(flag){
     setPlaylistNavsPause(flag);
   }
+  function getSearchSectionPause(flag){
+    setSearchSectionPause(flag);
+  }
+  console.log(searchSectionPause);
+  console.log(play);
   useEffect(() => {
     if (!playlistId) {
       setNavSectionFlag(true);
@@ -126,6 +133,8 @@ export default function Content() {
         songCurrentPlaylistId={playlistId}
         playlistNavsPause={playlistNavsPause}
         getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
+        searchSectionPause={searchSectionPause}
+        getSearchSectionPause={getSearchSectionPause}
       />
       {!minInfo && (
         <InfoSection
@@ -143,6 +152,7 @@ export default function Content() {
           play={play}
           getSearchedSongInfo={getSearchedSongInfo}
           getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
+          getSearchSectionPause={getSearchSectionPause}
         />
       ) : (
         <PlaylistSection
@@ -154,6 +164,7 @@ export default function Content() {
           searchSectionflag={searchSectionflag}
           getSearchedSongInfo={getSearchedSongInfo}
           getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
+          getSearchSectionPause={getSearchSectionPause}
         />
       )}
     </div>

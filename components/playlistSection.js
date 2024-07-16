@@ -12,7 +12,8 @@ export default function PlaylistSection({
   playerPlaylistId,
   searchSectionflag,
   getSearchedSongInfo,
-  getPauseFromPlaylistNavs
+  getPauseFromPlaylistNavs,
+  getSearchSectionPause
 }) {
   const [currPlayInfo, setCurrPlayInfo] = useState([]);
   const [dataFlag, setDataFlag] = useState(false);
@@ -55,7 +56,7 @@ export default function PlaylistSection({
       }:null}
     >
       {searchSectionflag ? (
-        <SearchSection getSearchedSongInfo={getSearchedSongInfo} play={play}/>
+        <SearchSection getSearchedSongInfo={getSearchedSongInfo} play={play} getSearchSectionPause={getSearchSectionPause}/>
       ) : (
         <>
           {dataFlag ? (
