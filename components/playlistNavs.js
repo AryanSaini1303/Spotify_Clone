@@ -7,7 +7,7 @@ export default function PlaylistNavs({
   getPauseFromPlaylistNavs,
 }) {
   const [currentFlag, setCurrentFlag] = useState(false);
-  currentId && localStorage.setItem("currentId", currentId);
+  currentId && !localStorage.getItem("playSearchedSongId")&&localStorage.setItem("currentId", currentId);
   useEffect(() => {
     id === localStorage.getItem("currentId") && setCurrentFlag(true);
   }, [localStorage.getItem("currentId"), play]);
