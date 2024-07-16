@@ -83,11 +83,7 @@ export default function Content() {
   }
   function getPauseFromPlaylistNavs(flag){
     setPlaylistNavsPause(flag);
-    console.log(flag);
   }
-  useEffect(()=>{
-    console.log(playlistNavsPause);
-  },[playlistNavsPause])
   useEffect(() => {
     if (!playlistId) {
       setNavSectionFlag(true);

@@ -26,7 +26,6 @@ export default function PlayerSection({
   const isFirstRender = useRef(true);
   useEffect(() => {
     if (playlistNavsPause) {
-      console.log("here");
       setPlay(false);
       songRef.current.pause();
       playStatus(songCurrentPlaylistId,false)
