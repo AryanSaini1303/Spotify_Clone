@@ -16,7 +16,8 @@ export default function MainSection({
   sendPlaylistIdToParent,
   searchSectionflag,
   play,
-  getSearchedSongInfo
+  getSearchedSongInfo,
+  getPauseFromPlaylistNavs
 }) {
   const time = new Date().getHours();
   let greeting;
@@ -48,6 +49,7 @@ export default function MainSection({
                 sendDataToParent={handleDataFromChild}
                 sendPlaylistIdToParent={sendPlaylistIdToParent}
                 play={play}
+                getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
               />
             </div>
           </>

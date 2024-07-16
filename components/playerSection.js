@@ -9,7 +9,9 @@ export default function PlayerSection({
   info,
   defaultSongRender,
   playStatus,
-  songCurrentPlaylistId
+  songCurrentPlaylistId,
+  playlistNavsPause,
+  getPauseFromPlaylistNavs
 }) {
   // console.log(songCurrentPlaylistId);
   const progressRef = useRef(null);
@@ -21,12 +23,22 @@ export default function PlayerSection({
   const [progressMouseLeave, setProgressMouseLeave] = useState(false);
   const [songDuration, setSongDuration] = useState(0);
   const [songCurrentTime, setSongCurrentTime] = useState(0);
-  const isFirstRender=useRef(true);
+  const isFirstRender = useRef(true);
+  useEffect(() => {
+    if (playlistNavsPause) {
+      console.log("here");
+      setPlay(false);
+      songRef.current.pause();
+      playStatus(songCurrentPlaylistId,false)
+    }
+  }, [playlistNavsPause]);
   useEffect(() => {
     if (songRef.current) {
       songRef.current.onloadedmetadata = () => {
         setSongDuration(
-          `${Math.floor(songRef.current.duration / 60)}:${Math.round(songRef.current.duration % 60)<10?"0":''}${Math.round(songRef.current.duration % 60)}`
+          `${Math.floor(songRef.current.duration / 60)}:${
+            Math.round(songRef.current.duration % 60) < 10 ? "0" : ""
+          }${Math.round(songRef.current.duration % 60)}`
         );
         progressRef.current.max = songRef.current.duration;
         progressRef.current.value = 0;
@@ -34,13 +46,13 @@ export default function PlayerSection({
       songRef.current.pause();
       songRef.current.load();
       songRef.current.play();
-      if(!defaultSongRender){
+      if (!defaultSongRender) {
         // console.log("Here");
         setPlay(true);
       }
       if (!isFirstRender.current) {
         playStatus(songCurrentPlaylistId, true);
-      } else {  
+      } else {
         isFirstRender.current = false;
       }
       // In above code, if the component is first rendered then it does not execute the function, which means now whenver the "info" changes i.e. when user clicks on the song, then the function will be exeucted
@@ -79,6 +91,7 @@ export default function PlayerSection({
   }
 
   function handlePlayClick() {
+    getPauseFromPlaylistNavs(false)
     playStatus();
     setPlay((prevPlay) => {
       const newPlay = !prevPlay;
@@ -149,7 +162,9 @@ export default function PlayerSection({
               <div
                 className={styles.playBtn}
                 ref={playPauseRef}
-                onClick={(()=>{handlePlayClick(info.id)})}
+                onClick={() => {
+                  handlePlayClick(info.id);
+                }}
               >
                 <Image
                   src={!play ? "/playButtonSharp.svg" : "/pause.svg"}

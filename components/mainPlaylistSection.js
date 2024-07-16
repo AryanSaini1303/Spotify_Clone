@@ -6,7 +6,8 @@ export default function MainPlaylistSection({
   sendDataToParent,
   playlistPosters,
   sendPlaylistIdToParent,
-  play
+  play,
+  getPauseFromPlaylistNavs
 }) {
   const [mouseEnter, setMouseEnter] = useState({});
   const [currentId, setCurrentId] = useState();
@@ -21,6 +22,11 @@ export default function MainPlaylistSection({
   function handleMouseLeave(id) {
     setMouseEnter((prevStates) => ({ ...prevStates, [id]: false }));
     sendDataToParent("default");
+  }
+
+  function handleClick(id){
+    console.log(id);
+    play&&currentId===id&&getPauseFromPlaylistNavs(true);
   }
 
   const [playlists, setPlaylists] = useState([]);
@@ -67,7 +73,7 @@ export default function MainPlaylistSection({
                 className={styles.playbuttonContainer}
                 onClick={handlePlayButtonClick}
               >
-                <div className={styles.playbutton}>
+                <div className={styles.playbutton} onClick={()=>{handleClick(playlist.id)}}>
                   <img
                     src={play&&currentId===playlist.id ? "pause.svg" : "playButton.svg"}
                     alt="Play Button"

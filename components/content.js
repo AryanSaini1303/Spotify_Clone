@@ -17,6 +17,7 @@ export default function Content() {
   const [play, setPlay] = useState(false);
   const [playerPlaylistId, setPlayerPlaylistId] = useState();
   const [searchSectionflag, setSearchSectionflag] = useState(false);
+  const [playlistNavsPause,setPlaylistNavsPause]=useState();
   useEffect(() => {
     currentSongInfo &&
       window.localStorage.setItem(
@@ -27,6 +28,7 @@ export default function Content() {
     let data = window.localStorage.getItem("currentSongInfo");
     !currentSongInfo && setCurrentSongInfo(JSON.parse(data));
     // Then in the end we retrieve our stringified data and parse it to use it as an object again
+    setPlaylistNavsPause(false);
   }, [currentSongInfo]);
   const [defaultSongRender, setDefaultSongRender] = useState(true);
 
@@ -79,6 +81,13 @@ export default function Content() {
     setCurrentSongInfo(song);
     setDefaultSongRender(false);
   }
+  function getPauseFromPlaylistNavs(flag){
+    setPlaylistNavsPause(flag);
+    console.log(flag);
+  }
+  useEffect(()=>{
+    console.log(playlistNavsPause);
+  },[playlistNavsPause])
   useEffect(() => {
     if (!playlistId) {
       setNavSectionFlag(true);
@@ -119,6 +128,8 @@ export default function Content() {
         defaultSongRender={defaultSongRender}
         playStatus={getPlayFromPlayerSection}
         songCurrentPlaylistId={playlistId}
+        playlistNavsPause={playlistNavsPause}
+        getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
       />
       {!minInfo && (
         <InfoSection
@@ -135,6 +146,7 @@ export default function Content() {
           searchSectionflag={searchSectionflag}
           play={play}
           getSearchedSongInfo={getSearchedSongInfo}
+          getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
         />
       ) : (
         <PlaylistSection
@@ -145,6 +157,7 @@ export default function Content() {
           playerPlaylistId={playerPlaylistId}
           searchSectionflag={searchSectionflag}
           getSearchedSongInfo={getSearchedSongInfo}
+          getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
         />
       )}
     </div>
