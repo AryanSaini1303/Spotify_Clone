@@ -25,8 +25,7 @@ export default function MainPlaylistSection({
   }
 
   function handleClick(id){
-    console.log(id);
-    play&&currentId===id?getPauseFromPlaylistNavs(true):getPauseFromPlaylistNavs(false);
+    !localStorage.getItem("playSearchedSongId")&&(play&&currentId===id?getPauseFromPlaylistNavs(true):getPauseFromPlaylistNavs(false))
   }
 
   const [playlists, setPlaylists] = useState([]);
