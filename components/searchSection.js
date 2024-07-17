@@ -3,18 +3,23 @@ import Image from "next/image";
 import styles from "./searchSection.module.css";
 import { Ubuntu } from "next/font/google";
 import SearchedSongsLoader from "./searchedSongsLoader";
+import MusicBars from "./musicBars";
 const ubuntu = Ubuntu({
   weight: "700",
   subsets: ["latin"],
 });
-export default function SearchSection({ getSearchedSongInfo, play, getSearchSectionPause }) {
+export default function SearchSection({
+  getSearchedSongInfo,
+  play,
+  getSearchSectionPause,
+}) {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState();
   const [inputFlag, setInputFlag] = useState(false);
   const [hover, setHover] = useState({});
   const [songId, setSongId] = useState();
   const [topSongHover, setTopSongHover] = useState();
-  const searchRef=useRef(null);
+  const searchRef = useRef(null);
   function handleChange(e) {
     setResults(undefined);
     if (e.target.value.length === 0 || e.target.value.trim().length === 0) {
@@ -51,29 +56,15 @@ export default function SearchSection({ getSearchedSongInfo, play, getSearchSect
     e.stopPropagation();
     e.preventDefault();
   }
-  console.log(play);
-  // function handleSongClick(song) {
-  //   if (songId !== song.id) {
-  //     localStorage.removeItem("currentId");
-  //     getSearchedSongInfo(song);
-  //     song && localStorage.setItem("playSearchedSongId", song.id);
-  //     setSongId(localStorage.getItem("playSearchedSongId"));
-  //   }
-  // }
   function handleSongClick(song) {
-    // console.log(songId);
-    // console.log(song.id);
-    // console.log(play);
     if (songId !== song.id) {
       localStorage.removeItem("currentId");
       getSearchedSongInfo(song);
       song && localStorage.setItem("playSearchedSongId", song.id);
       setSongId(localStorage.getItem("playSearchedSongId"));
-    }
-    else if(songId===song.id&&play){
+    } else if (songId === song.id && play) {
       getSearchSectionPause(true);
-    }
-    else if(songId===song.id&&!play){
+    } else if (songId === song.id && !play) {
       getSearchSectionPause(false);
     }
   }
@@ -86,9 +77,9 @@ export default function SearchSection({ getSearchedSongInfo, play, getSearchSect
   useEffect(() => {
     setSongId(localStorage.getItem("playSearchedSongId"));
   }, [results]);
-  useEffect(()=>{
+  useEffect(() => {
     searchRef.current.focus();
-  },[])
+  }, []);
   return (
     <section className={styles.searchContainer}>
       <header className={styles.searchComponent}>
@@ -109,7 +100,7 @@ export default function SearchSection({ getSearchedSongInfo, play, getSearchSect
         />
       </header>
       <section className={styles.songsSection}>
-        {(results && results.length != []) && (
+        {results && results.length != [] && (
           <section>
             <header>
               <h1 className={ubuntu.className}>Top Result</h1>
@@ -130,7 +121,12 @@ export default function SearchSection({ getSearchedSongInfo, play, getSearchSect
                 <h5>{results[0].artist}</h5>
               </div>
               {topSongHover && (
-                <div className={styles.playButton}>
+                <div
+                  className={styles.playButton}
+                  onClick={() => {
+                    handleSongClick(results[0]);
+                  }}
+                >
                   <Image
                     src={
                       results[0].id === songId && play
@@ -139,15 +135,17 @@ export default function SearchSection({ getSearchedSongInfo, play, getSearchSect
                     }
                     height={results[0].id === songId && play ? 20 : 30}
                     width={results[0].id === songId && play ? 20 : 30}
-                    onClick={() => {
-                      handleSongClick(results[0]);
-                    }}
                     style={
                       results[0].id === songId && play
                         ? null
                         : { marginLeft: "3px" }
                     }
                   />
+                </div>
+              )}
+              {songId == results[0].id && play && (
+                <div className={styles.topMusicBars}>
+                  <MusicBars maximize={true} />
                 </div>
               )}
             </div>
@@ -179,7 +177,20 @@ export default function SearchSection({ getSearchedSongInfo, play, getSearchSect
                         handleSongClick(song);
                       }}
                     >
-                      <img src={song.poster} alt="Song's Poster" />
+                      <img
+                        src={song.poster}
+                        alt="Song's Poster"
+                        style={
+                          songId == song.id && play
+                            ? { filter: "brightness(25%)" }
+                            : null
+                        }
+                      />
+                      {songId == song.id && play && (
+                        <div className={styles.musicBars}>
+                          <MusicBars />
+                        </div>
+                      )}
                       <div className={styles.info}>
                         <h4
                           className={`${styles.title}`}
@@ -211,9 +222,11 @@ export default function SearchSection({ getSearchedSongInfo, play, getSearchSect
               </>
             ))
           ) : results && results.length == 0 && inputFlag ? (
-            <h1 className={`${ubuntu.className} ${styles.notFound}`}>No results found for &quot;{query}&quot;</h1>
+            <h1 className={`${ubuntu.className} ${styles.notFound}`}>
+              No results found for &quot;{query}&quot;
+            </h1>
           ) : (
-            inputFlag &&<SearchedSongsLoader/>
+            inputFlag && <SearchedSongsLoader />
           )}
         </section>
       </section>

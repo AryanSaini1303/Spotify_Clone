@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./playlistSong.module.css";
+import MusicBars from "./musicBars";
 
 export default function PlaylistSong({
   song,
@@ -9,7 +10,7 @@ export default function PlaylistSong({
   currentSongId,
   playlistId,
   getSearchSectionPause,
-  play
+  play,
 }) {
   // console.log(playlistId);
   // console.log(localStorage.getItem('currentId'));
@@ -24,17 +25,15 @@ export default function PlaylistSong({
   }
 
   function handleClick(id) {
-    console.log(id)
+    console.log(id);
     console.log(play);
-    if(id===currentSongId){
-      if(play){
+    if (id === currentSongId) {
+      if (play) {
         getSearchSectionPause(true);
-      }
-      else{
+      } else {
         getSearchSectionPause(false);
       }
-    }
-    else{
+    } else {
       getCurrentSongInfo(song);
       setCurrentSongId(id);
     }
@@ -63,7 +62,7 @@ export default function PlaylistSong({
                 : {}
             }
           >
-            {index + 1}
+            {localStorage.getItem("currentSongId") === song.id && localStorage.getItem("currentId") === playlistId && play?<MusicBars/>:(index + 1)}
           </h5>
         )}
       </header>

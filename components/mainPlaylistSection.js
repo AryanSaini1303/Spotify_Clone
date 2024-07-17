@@ -1,13 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import styles from "./mainPlaylistSection.module.css";
+import MusicBars from "./musicBars";
 
 export default function MainPlaylistSection({
   sendDataToParent,
   playlistPosters,
   sendPlaylistIdToParent,
   play,
-  getPauseFromPlaylistNavs
+  getPauseFromPlaylistNavs,
 }) {
   const [mouseEnter, setMouseEnter] = useState({});
   const [currentId, setCurrentId] = useState();
@@ -24,8 +25,11 @@ export default function MainPlaylistSection({
     sendDataToParent("default");
   }
 
-  function handleClick(id){
-    !localStorage.getItem("playSearchedSongId")&&(play&&currentId===id?getPauseFromPlaylistNavs(true):getPauseFromPlaylistNavs(false))
+  function handleClick(id) {
+    !localStorage.getItem("playSearchedSongId") &&
+      (play && currentId === id
+        ? getPauseFromPlaylistNavs(true)
+        : getPauseFromPlaylistNavs(false));
   }
 
   const [playlists, setPlaylists] = useState([]);
@@ -67,22 +71,34 @@ export default function MainPlaylistSection({
               <img src={playlistPosters[index]} alt="Playlist's Poster" />
               <h4>{playlist.name}</h4>
             </div>
-            {mouseEnter[playlist.id] && (
-              <div
-                className={styles.playbuttonContainer}
-                onClick={handlePlayButtonClick}
-              >
-                <div className={styles.playbutton} onClick={()=>{handleClick(playlist.id)}}>
+            <div
+              className={styles.playbuttonContainer}
+              onClick={handlePlayButtonClick}
+            >
+              {}
+              {mouseEnter[playlist.id]? (
+                <div
+                  className={styles.playbutton}
+                  onClick={() => {
+                    handleClick(playlist.id);
+                  }}
+                >
                   <img
-                    src={play&&currentId===playlist.id ? "pause.svg" : "playButton.svg"}
+                    src={
+                      play && currentId === playlist.id
+                        ? "pause.svg"
+                        : "playButton.svg"
+                    }
                     alt="Play Button"
                     style={
-                      play&&currentId===playlist.id ?{ marginLeft: "-0.5px" }:{ marginLeft: "1.5px" }
+                      play && currentId === playlist.id
+                        ? { marginLeft: "-0.5px" }
+                        : { marginLeft: "1.5px" }
                     }
                   />
                 </div>
-              </div>
-            )}
+              ):play && currentId === playlist.id&&<MusicBars customStyle={{margin:"0 0.5rem"}}/>}
+            </div>
           </section>
         );
       })}
