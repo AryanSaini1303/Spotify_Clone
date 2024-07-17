@@ -98,7 +98,6 @@
     cursor: pointer;
     transition: 0.15s all ease-in-out;
     position: relative;
-    overflow: hidden;
 }
 .topSong>img{
     height: 6.5rem;
@@ -182,8 +181,4 @@
     top: 35%;
     left: 1.65rem;
     transform: scale(1.3,1.3);
-}
-.topMusicBars{
-    position: absolute;
-    bottom: 0rem;
 }

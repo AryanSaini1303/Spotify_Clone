@@ -143,11 +143,6 @@ export default function SearchSection({
                   />
                 </div>
               )}
-              {songId == results[0].id && play && (
-                <div className={styles.topMusicBars}>
-                  <MusicBars maximize={true} />
-                </div>
-              )}
             </div>
           </section>
         )}
