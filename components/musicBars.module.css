@@ -2,7 +2,8 @@
     width: 0.1rem;
     background-color: #1FDF64;
     animation: barAnimation 0.7s infinite;
-    border-radius: 10px 10px 0 0;
+    /* border-radius: 10px 10px 0 0; */
+    will-change: height;
 }
 .container{
     display: flex;
