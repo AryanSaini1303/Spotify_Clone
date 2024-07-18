@@ -10,10 +10,13 @@ export default function PlaylistSongsSection({
   playerPlaylistId,
   getPauseFromPlaylistNavs,
   getSearchSectionPause,
-  play
+  play,
+  getCurrSongsInfo,
+  queueFlag
 }) {
   const [finalPlay, setFinalPlay] = useState(false);
   const [currentSongId, setCurrentSongId] = useState(null);
+  console.log(currPlayInfo);
   // This state should only be in the parent component i.e. PlaylistSongsSection not in the child component i.e. PlaylistSong as each child component maintains its own state and does not know about the state of other child components.
   useEffect(() => {
     if (playerPlay) {
@@ -29,6 +32,9 @@ export default function PlaylistSongsSection({
         currentId={playerPlaylistId}
         play={finalPlay}
         getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
+        currSongsInfo={currPlayInfo.songInfo}
+        getCurrSongsInfo={getCurrSongsInfo}
+        queueFlag={queueFlag}
       />
       <section className={styles.songsSection}>
         <header className={styles.info}>
@@ -53,6 +59,7 @@ export default function PlaylistSongsSection({
                   key={song.id}
                   getSearchSectionPause={getSearchSectionPause}
                   play={play}
+                  queueFlag={queueFlag}
                 />
               );
             })}

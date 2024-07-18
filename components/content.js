@@ -4,7 +4,7 @@ import MainSection from "@/components/mainSection";
 import InfoSection from "@/components/infoSection";
 import NavSection from "@/components/navSection";
 import LibSection from "@/components/libSection";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./content.module.css";
 import PlaylistSection from "./playlistSection";
 
@@ -17,8 +17,16 @@ export default function Content() {
   const [play, setPlay] = useState(false);
   const [playerPlaylistId, setPlayerPlaylistId] = useState();
   const [searchSectionflag, setSearchSectionflag] = useState(false);
-  const [playlistNavsPause,setPlaylistNavsPause]=useState(true);
-  const [searchSectionPause,setSearchSectionPause]=useState(true);
+  const [playlistNavsPause, setPlaylistNavsPause] = useState(true);
+  const [searchSectionPause, setSearchSectionPause] = useState(true);
+  const [queueSongsInfo, setQueueSongsInfo] = useState();
+  const [queueSongNum, setQueueSongNum] = useState(0);
+  const [queueFlag, setQueueFlag] = useState();
+  const [currentPlaylistId,setCurrentPlaylistId]=useState();
+  console.log(playlistId);
+  useEffect(()=>{
+    setQueueFlag(localStorage.getItem("queueFlag"));
+  },[])
   useEffect(() => {
     currentSongInfo &&
       window.localStorage.setItem(
@@ -29,7 +37,8 @@ export default function Content() {
     let data = window.localStorage.getItem("currentSongInfo");
     !currentSongInfo && setCurrentSongInfo(JSON.parse(data));
     // Then in the end we retrieve our stringified data and parse it to use it as an object again
-    !minLib&&setPlaylistNavsPause(false);
+    !minLib && setPlaylistNavsPause(false);
+    setCurrentPlaylistId(playlistId);
   }, [currentSongInfo]);
   const [defaultSongRender, setDefaultSongRender] = useState(true);
 
@@ -69,7 +78,9 @@ export default function Content() {
   function getCurrentSongInfo(info) {
     setCurrentSongInfo(info);
     setDefaultSongRender(false);
-    localStorage.removeItem("playSearchedSongId")
+    setQueueFlag(false);
+    localStorage.setItem("queueFlag",false);
+    localStorage.removeItem("playSearchedSongId");
   }
   function getPlayFromPlayerSection(id, flag) {
     console.log(flag);
@@ -79,19 +90,39 @@ export default function Content() {
   function getSearchSectionFlag(flag) {
     setSearchSectionflag(flag);
   }
-  function getSearchedSongInfo(song){
+  function getSearchedSongInfo(song) {
     setCurrentSongInfo(song);
     setDefaultSongRender(false);
   }
-  function getPauseFromPlaylistNavs(flag){
+  function getPauseFromPlaylistNavs(flag) {
     setPlaylistNavsPause(flag);
   }
-  console.log(playlistNavsPause);
-  function getSearchSectionPause(flag){
+  function getSearchSectionPause(flag) {
     setSearchSectionPause(flag);
   }
-  console.log(searchSectionPause);
-  console.log(play);
+  function getCurrSongsInfo(info) {
+    setQueueSongsInfo(info);
+    setQueueFlag(true);
+    localStorage.setItem("queueFlag",true);
+    localStorage.setItem("currentId", currentPlaylistId);
+  }
+  console.log(queueSongsInfo);
+  useEffect(() => {
+    console.log(queueSongNum);
+    if(queueSongsInfo&&queueSongsInfo[queueSongNum]){
+      setCurrentSongInfo(queueSongsInfo[queueSongNum]);
+      localStorage.setItem("currentSongId",queueSongsInfo[queueSongNum].id);
+      setPlaylistNavsPause(false);
+      localStorage.setItem("queueSongNum",queueSongNum);
+    }
+    else{
+      // setQueueFlag(false);
+      setPlaylistNavsPause(true);
+    }
+  }, [queueSongsInfo,queueSongNum]);
+  useEffect(()=>{
+    setQueueSongNum(0);
+  },[queueSongsInfo])
   useEffect(() => {
     if (!playlistId) {
       setNavSectionFlag(true);
@@ -131,11 +162,14 @@ export default function Content() {
         info={currentSongInfo}
         defaultSongRender={defaultSongRender}
         playStatus={getPlayFromPlayerSection}
-        songCurrentPlaylistId={playlistId}
+        songCurrentPlaylistId={currentPlaylistId}
         playlistNavsPause={playlistNavsPause}
         getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
         searchSectionPause={searchSectionPause}
         getSearchSectionPause={getSearchSectionPause}
+        queueFlag={queueFlag}
+        setQueueSongNum={setQueueSongNum}
+        queueSongNum={queueSongNum}
       />
       {!minInfo && (
         <InfoSection
@@ -166,6 +200,8 @@ export default function Content() {
           getSearchedSongInfo={getSearchedSongInfo}
           getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
           getSearchSectionPause={getSearchSectionPause}
+          getCurrSongsInfo={getCurrSongsInfo}
+          queueFlag={queueFlag}
         />
       )}
     </div>

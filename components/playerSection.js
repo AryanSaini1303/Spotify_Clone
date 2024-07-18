@@ -14,8 +14,11 @@ export default function PlayerSection({
   getPauseFromPlaylistNavs,
   searchSectionPause,
   getSearchSectionPause,
+  queueFlag,
+  setQueueSongNum,
+  queueSongNum
 }) {
-  // console.log(songCurrentPlaylistId);
+  console.log(songCurrentPlaylistId);
   const progressRef = useRef(null);
   const playPauseRef = useRef(null);
   const songRef = useRef(null);
@@ -26,6 +29,9 @@ export default function PlayerSection({
   const [songDuration, setSongDuration] = useState(0);
   const [songCurrentTime, setSongCurrentTime] = useState(0);
   const isFirstRender = useRef(true);
+  console.log(info);
+  console.log(playlistNavsPause);
+  console.log(play);
   useEffect(() => {
     if (playlistNavsPause) {
       if (songRef.current) {
@@ -34,11 +40,12 @@ export default function PlayerSection({
         playStatus(songCurrentPlaylistId, false);
       }
     } else {
+      console.log("here")
       setPlay(true);
       songRef.current.play();
       playStatus(songCurrentPlaylistId, true);
     }
-  }, [playlistNavsPause]);
+  }, [playlistNavsPause,info]);
   useEffect(() => {
     if (searchSectionPause) {
       if (songRef.current) {
@@ -48,7 +55,6 @@ export default function PlayerSection({
       }
     } else {
       if (songRef.current) {
-        console.log("here");
         setPlay(true);
         songRef.current.play();
         playStatus(songCurrentPlaylistId, true);
@@ -104,6 +110,10 @@ export default function PlayerSection({
       setProgressBarValue(0);
       songRef.current.currentTime = 0;
       playStatus();
+      if(queueFlag){
+        setQueueSongNum(queueSongNum+1);
+        setPlay(true);
+      }
     }
   }
 

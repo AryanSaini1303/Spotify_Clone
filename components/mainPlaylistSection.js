@@ -26,10 +26,17 @@ export default function MainPlaylistSection({
   }
 
   function handleClick(id) {
-    !localStorage.getItem("playSearchedSongId") &&
-      (play && currentId === id
-        ? getPauseFromPlaylistNavs(true)
-        : getPauseFromPlaylistNavs(false));
+    console.log(currentId);
+    console.log(id);
+    // !localStorage.getItem("playSearchedSongId") &&
+    //   (play && currentId === id
+    //     ? getPauseFromPlaylistNavs(true)
+    //     : getPauseFromPlaylistNavs(false));
+    if(!localStorage.getItem("playSeachedSongId")){
+      if(currentId===id){
+        play? getPauseFromPlaylistNavs(true): getPauseFromPlaylistNavs(false);
+      }
+    }
   }
 
   const [playlists, setPlaylists] = useState([]);

@@ -13,10 +13,13 @@ export default function PlaylistSection({
   searchSectionflag,
   getSearchedSongInfo,
   getPauseFromPlaylistNavs,
-  getSearchSectionPause
+  getSearchSectionPause,
+  getCurrSongsInfo,
+  queueFlag
 }) {
   const [currPlayInfo, setCurrPlayInfo] = useState([]);
   const [dataFlag, setDataFlag] = useState(false);
+  console.log(currPlayInfo);
   useEffect(() => {
     if (!id) return; // Ensure id is defined
     setDataFlag(false);
@@ -86,6 +89,8 @@ export default function PlaylistSection({
                 getPauseFromPlaylistNavs={getPauseFromPlaylistNavs}
                 getSearchSectionPause={getSearchSectionPause}
                 play={play}
+                getCurrSongsInfo={getCurrSongsInfo}
+                queueFlag={queueFlag}
               />
             </>
           ) : (

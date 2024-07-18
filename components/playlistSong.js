@@ -11,6 +11,7 @@ export default function PlaylistSong({
   playlistId,
   getSearchSectionPause,
   play,
+  queueFlag,
 }) {
   // console.log(playlistId);
   // console.log(localStorage.getItem('currentId'));
@@ -27,7 +28,12 @@ export default function PlaylistSong({
   function handleClick(id) {
     console.log(id);
     console.log(play);
-    if (id === currentSongId) {
+    console.log(localStorage.getItem("currentSongId"));
+    console.log(currentSongId);
+    let finalId=queueFlag ? localStorage.getItem("currentSongId") : currentSongId
+    if (
+      id === finalId
+    ) {
       if (play) {
         getSearchSectionPause(true);
       } else {
@@ -62,7 +68,13 @@ export default function PlaylistSong({
                 : {}
             }
           >
-            {localStorage.getItem("currentSongId") === song.id && localStorage.getItem("currentId") === playlistId && play?<MusicBars/>:(index + 1)}
+            {localStorage.getItem("currentSongId") === song.id &&
+            localStorage.getItem("currentId") === playlistId &&
+            play ? (
+              <MusicBars />
+            ) : (
+              index + 1
+            )}
           </h5>
         )}
       </header>
