@@ -75,11 +75,13 @@ export default function Content() {
     setMinInfo(!minInfo);
   }
   function getCurrentSongInfo(info) {
+    setCurrentPlaylistId(playlistId);
     setCurrentSongInfo(info);
     setDefaultSongRender(false);
     setQueueFlag(false);
     localStorage.setItem("queueFlag",false);
     localStorage.removeItem("playSearchedSongId");
+    localStorage.setItem("currentId", currentPlaylistId);
   }
   function getPlayFromPlayerSection(id, flag) {
     console.log(flag);

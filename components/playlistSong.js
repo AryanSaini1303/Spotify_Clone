@@ -30,10 +30,8 @@ export default function PlaylistSong({
     console.log(play);
     console.log(localStorage.getItem("currentSongId"));
     console.log(currentSongId);
-    let finalId=queueFlag ? localStorage.getItem("currentSongId") : currentSongId
-    if (
-      id === finalId
-    ) {
+    let finalId = queueFlag? localStorage.getItem("currentSongId"): currentSongId;
+    if (id === finalId) {
       if (play) {
         getSearchSectionPause(true);
       } else {
