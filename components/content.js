@@ -38,7 +38,6 @@ export default function Content() {
     !currentSongInfo && setCurrentSongInfo(JSON.parse(data));
     // Then in the end we retrieve our stringified data and parse it to use it as an object again
     !minLib && setPlaylistNavsPause(false);
-    setCurrentPlaylistId(playlistId);
   }, [currentSongInfo]);
   const [defaultSongRender, setDefaultSongRender] = useState(true);
 
@@ -101,6 +100,7 @@ export default function Content() {
     setSearchSectionPause(flag);
   }
   function getCurrSongsInfo(info) {
+    setCurrentPlaylistId(playlistId);
     setQueueSongsInfo(info);
     setQueueFlag(true);
     localStorage.setItem("queueFlag",true);

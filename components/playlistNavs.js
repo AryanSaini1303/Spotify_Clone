@@ -42,6 +42,7 @@ export default function PlaylistNavs({
         }
       }
       else if(localStorage.getItem("currentId") != id){
+        console.log("here");
         getCurrSongsInfo(currSongsInfo);
       }
     }
