@@ -16,7 +16,7 @@ export default function PlaylistSong({
   // console.log(playlistId);
   // console.log(localStorage.getItem('currentId'));
   const [hover, setHover] = useState(false);
-  currentSongId && localStorage.setItem("currentSongId", currentSongId);
+  currentSongId ? localStorage.setItem("currentSongId", currentSongId):localStorage.getItem("playSearchedSongId")&&localStorage.setItem("currentSongId", null);
   function handleMouseEnter() {
     setHover(true);
   }
