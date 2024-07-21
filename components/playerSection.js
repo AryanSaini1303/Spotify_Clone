@@ -79,6 +79,10 @@ export default function PlayerSection({
         // console.log("Here");
         setPlay(true);
       }
+      else{
+        setPlay(false);
+        songRef.current.pause();
+      }
       if (!isFirstRender.current) {
         playStatus(songCurrentPlaylistId, true);
       } else {

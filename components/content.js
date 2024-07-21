@@ -102,6 +102,7 @@ export default function Content() {
     setSearchSectionPause(flag);
   }
   function getCurrSongsInfo(info) {
+    setDefaultSongRender(false);
     setCurrentPlaylistId(playlistId);
     setQueueSongsInfo(info);
     setQueueFlag(true);
