@@ -7,7 +7,7 @@ export default function PlaylistNavs({
   getPauseFromPlaylistNavs,
   currSongsInfo,
   getCurrSongsInfo,
-  queueFlag
+  queueFlag,
 }) {
   const [currentFlag, setCurrentFlag] = useState(false);
   currentId &&
@@ -22,26 +22,27 @@ export default function PlaylistNavs({
   console.log(currentId);
   function handleClick() {
     localStorage.removeItem("playSearchedSongId");
-    if (localStorage.getItem("currentId") === id&&!queueFlag) {
-      if (play) {
-        getPauseFromPlaylistNavs(true);
-      } else {
-        getPauseFromPlaylistNavs(false);
+    if (localStorage.getItem("currentId") === id) {
+      if (queueFlag=='false') {
+        if (play) {
+          getPauseFromPlaylistNavs(true);
+        } else {
+          getPauseFromPlaylistNavs(false);
+        }
       }
     } else {
-      if(localStorage.getItem("currentId") === id&&queueFlag){
-        if(!currentId){// here if the currentId is not defined then this means that it is the first render of the playlist and no song is clicked as currentId is only set when any song of a playlist is clicked or when then queueSongs are first sent to the parent component, so we can deduce that if currentId is not defined then it is the first render and we have to send the queuesongs to the parent again instead of playing the current song selected.
+      if (localStorage.getItem("currentId") === id && queueFlag) {
+        if (!currentId) {
+          // here if the currentId is not defined then this means that it is the first render of the playlist and no song is clicked as currentId is only set when any song of a playlist is clicked or when then queueSongs are first sent to the parent component, so we can deduce that if currentId is not defined then it is the first render and we have to send the queuesongs to the parent again instead of playing the current song selected.
           getCurrSongsInfo(currSongsInfo);
-        }
-        else{
+        } else {
           if (play) {
             getPauseFromPlaylistNavs(true);
           } else {
             getPauseFromPlaylistNavs(false);
           }
         }
-      }
-      else if(localStorage.getItem("currentId") != id){
+      } else if (localStorage.getItem("currentId") != id) {
         console.log("here");
         getCurrSongsInfo(currSongsInfo);
       }
