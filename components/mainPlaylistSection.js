@@ -82,8 +82,7 @@ export default function MainPlaylistSection({
               className={styles.playbuttonContainer}
               onClick={handlePlayButtonClick}
             >
-              {}
-              {mouseEnter[playlist.id]? (
+              {/* {mouseEnter[playlist.id]? (
                 <div
                   className={styles.playbutton}
                   onClick={() => {
@@ -104,7 +103,8 @@ export default function MainPlaylistSection({
                     }
                   />
                 </div>
-              ):play && currentId === playlist.id&&<MusicBars customStyle={{margin:"0 0.5rem"}}/>}
+              ):play && currentId === playlist.id&&<MusicBars customStyle={{margin:"0 0.5rem"}}/>} */}
+              {play && currentId === playlist.id&&<MusicBars customStyle={{margin:"0 0.5rem"}}/>}
             </div>
           </section>
         );
