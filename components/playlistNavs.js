@@ -23,7 +23,7 @@ export default function PlaylistNavs({
   function handleClick() {
     localStorage.removeItem("playSearchedSongId");
     if (localStorage.getItem("currentId") === id) {
-      if (queueFlag=='false') {
+      if (queueFlag=='false'||!queueFlag) {
         if (play) {
           getPauseFromPlaylistNavs(true);
         } else {
