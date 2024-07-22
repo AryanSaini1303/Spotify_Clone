@@ -16,22 +16,21 @@ export default function PlaylistNavs({
   useEffect(() => {
     id === localStorage.getItem("currentId") && setCurrentFlag(true);
   }, [localStorage.getItem("currentId"), play]);
-  console.log(localStorage.getItem("currentId"));
-  console.log(id);
-  console.log(queueFlag);
-  console.log(currentId);
   function handleClick() {
+    console.log(localStorage.getItem("currentId"));
+    console.log(id);
+    console.log(queueFlag);
+    console.log(currentId);
     localStorage.removeItem("playSearchedSongId");
     if (localStorage.getItem("currentId") === id) {
-      if (queueFlag=='false'||!queueFlag) {
+      console.log("here");
+      if (queueFlag == "false" || !queueFlag) {
         if (play) {
           getPauseFromPlaylistNavs(true);
         } else {
           getPauseFromPlaylistNavs(false);
         }
-      }
-    } else {
-      if (localStorage.getItem("currentId") === id && queueFlag) {
+      } else if (queueFlag || queueFlag == "true") {
         if (!currentId) {
           // here if the currentId is not defined then this means that it is the first render of the playlist and no song is clicked as currentId is only set when any song of a playlist is clicked or when then queueSongs are first sent to the parent component, so we can deduce that if currentId is not defined then it is the first render and we have to send the queuesongs to the parent again instead of playing the current song selected.
           getCurrSongsInfo(currSongsInfo);
@@ -42,10 +41,10 @@ export default function PlaylistNavs({
             getPauseFromPlaylistNavs(false);
           }
         }
-      } else if (localStorage.getItem("currentId") != id) {
-        console.log("here");
-        getCurrSongsInfo(currSongsInfo);
       }
+    } else if (localStorage.getItem("currentId") != id) {
+      console.log("here");
+      getCurrSongsInfo(currSongsInfo);
     }
   }
   return (
