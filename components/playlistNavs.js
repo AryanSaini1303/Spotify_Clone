@@ -8,6 +8,7 @@ export default function PlaylistNavs({
   currSongsInfo,
   getCurrSongsInfo,
   queueFlag,
+  setQueueSongNum
 }) {
   const [currentFlag, setCurrentFlag] = useState(false);
   currentId &&
@@ -34,6 +35,8 @@ export default function PlaylistNavs({
         if (!currentId) {
           // here if the currentId is not defined then this means that it is the first render of the playlist and no song is clicked as currentId is only set when any song of a playlist is clicked or when then queueSongs are first sent to the parent component, so we can deduce that if currentId is not defined then it is the first render and we have to send the queuesongs to the parent again instead of playing the current song selected.
           getCurrSongsInfo(currSongsInfo);
+          console.log("here");
+          setQueueSongNum(parseInt(localStorage.getItem("queueSongNum")));
         } else {
           if (play) {
             getPauseFromPlaylistNavs(true);
@@ -44,6 +47,7 @@ export default function PlaylistNavs({
       }
     } else if (localStorage.getItem("currentId") != id) {
       console.log("here");
+      setQueueSongNum(0);
       getCurrSongsInfo(currSongsInfo);
     }
   }

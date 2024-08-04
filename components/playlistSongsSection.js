@@ -12,7 +12,8 @@ export default function PlaylistSongsSection({
   getSearchSectionPause,
   play,
   getCurrSongsInfo,
-  queueFlag
+  queueFlag,
+  setQueueSongNum
 }) {
   const [finalPlay, setFinalPlay] = useState(false);
   const [currentSongId, setCurrentSongId] = useState(null);
@@ -35,6 +36,7 @@ export default function PlaylistSongsSection({
         currSongsInfo={currPlayInfo.songInfo}
         getCurrSongsInfo={getCurrSongsInfo}
         queueFlag={queueFlag}
+        setQueueSongNum={setQueueSongNum}
       />
       <section className={styles.songsSection}>
         <header className={styles.info}>

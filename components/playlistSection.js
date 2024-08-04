@@ -15,7 +15,8 @@ export default function PlaylistSection({
   getPauseFromPlaylistNavs,
   getSearchSectionPause,
   getCurrSongsInfo,
-  queueFlag
+  queueFlag,
+  setQueueSongNum
 }) {
   const [currPlayInfo, setCurrPlayInfo] = useState([]);
   const [dataFlag, setDataFlag] = useState(false);
@@ -91,6 +92,7 @@ export default function PlaylistSection({
                 play={play}
                 getCurrSongsInfo={getCurrSongsInfo}
                 queueFlag={queueFlag}
+                setQueueSongNum={setQueueSongNum}
               />
             </>
           ) : (

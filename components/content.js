@@ -23,7 +23,8 @@ export default function Content() {
   const [queueSongNum, setQueueSongNum] = useState(0);
   const [queueFlag, setQueueFlag] = useState();
   const [currentPlaylistId,setCurrentPlaylistId]=useState();
-  console.log(playlistId);
+  const [isFirstRender,setIsFirstRender]=useState(true);
+  console.log(currentPlaylistId);
   useEffect(()=>{
     setQueueFlag(localStorage.getItem("queueFlag"));
   },[])
@@ -102,6 +103,7 @@ export default function Content() {
     setSearchSectionPause(flag);
   }
   function getCurrSongsInfo(info) {
+    console.log("here");
     setDefaultSongRender(false);
     setCurrentPlaylistId(playlistId);
     setQueueSongsInfo(info);
@@ -112,20 +114,18 @@ export default function Content() {
   console.log(queueSongsInfo);
   useEffect(() => {
     console.log(queueSongNum);
+    !isFirstRender&&localStorage.setItem("queueSongNum",queueSongNum);
+    setIsFirstRender(false);
     if(queueSongsInfo&&queueSongsInfo[queueSongNum]){
       setCurrentSongInfo(queueSongsInfo[queueSongNum]);
       localStorage.setItem("currentSongId",queueSongsInfo[queueSongNum].id);
       setPlaylistNavsPause(false);
-      localStorage.setItem("queueSongNum",queueSongNum);
     }
     else{
       // setQueueFlag(false);
       setPlaylistNavsPause(true);
     }
   }, [queueSongsInfo,queueSongNum]);
-  useEffect(()=>{
-    setQueueSongNum(0);
-  },[queueSongsInfo])
   useEffect(() => {
     if (!playlistId) {
       setNavSectionFlag(true);
@@ -205,6 +205,7 @@ export default function Content() {
           getSearchSectionPause={getSearchSectionPause}
           getCurrSongsInfo={getCurrSongsInfo}
           queueFlag={queueFlag}
+          setQueueSongNum={setQueueSongNum}
         />
       )}
     </div>
