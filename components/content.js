@@ -7,6 +7,7 @@ import LibSection from "@/components/libSection";
 import { useEffect, useState } from "react";
 import styles from "./content.module.css";
 import PlaylistSection from "./playlistSection";
+import Cookies from 'js-cookie';
 
 export default function Content() {
   const [minLib, setMinLib] = useState(true);
