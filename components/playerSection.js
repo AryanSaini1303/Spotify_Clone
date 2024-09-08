@@ -16,9 +16,11 @@ export default function PlayerSection({
   getSearchSectionPause,
   queueFlag,
   setQueueSongNum,
-  queueSongNum
+  queueSongNum,
+  queueLength,
 }) {
   console.log(songCurrentPlaylistId);
+  console.log(queueFlag);
   const progressRef = useRef(null);
   const playPauseRef = useRef(null);
   const songRef = useRef(null);
@@ -29,6 +31,8 @@ export default function PlayerSection({
   const [songDuration, setSongDuration] = useState(0);
   const [songCurrentTime, setSongCurrentTime] = useState(0);
   const isFirstRender = useRef(true);
+  const [nextSongFlag, setNextSongFlag] = useState();
+  const [previousSongFlag, setPreviousSongFlag] = useState();
   console.log(info);
   console.log(playlistNavsPause);
   console.log(play);
@@ -40,25 +44,25 @@ export default function PlayerSection({
         playStatus(songCurrentPlaylistId, false);
       }
     } else {
-      console.log("here")
+      console.log("here");
       setPlay(true);
       songRef.current.play();
       playStatus(songCurrentPlaylistId, true);
     }
-  }, [playlistNavsPause,info]);
+  }, [playlistNavsPause, info]);
   useEffect(() => {
     if (searchSectionPause) {
       if (songRef.current) {
-      setPlay(false);
-      songRef.current.pause();
-      playStatus(songCurrentPlaylistId, false);
+        setPlay(false);
+        songRef.current.pause();
+        playStatus(songCurrentPlaylistId, false);
       }
     } else {
       if (songRef.current) {
         setPlay(true);
         songRef.current.play();
         playStatus(songCurrentPlaylistId, true);
-        }
+      }
     }
   }, [searchSectionPause]);
   useEffect(() => {
@@ -78,8 +82,7 @@ export default function PlayerSection({
       if (!defaultSongRender) {
         // console.log("Here");
         setPlay(true);
-      }
-      else{
+      } else {
         setPlay(false);
         songRef.current.pause();
       }
@@ -114,8 +117,8 @@ export default function PlayerSection({
       setProgressBarValue(0);
       songRef.current.currentTime = 0;
       playStatus();
-      if(queueFlag){
-        setQueueSongNum(queueSongNum+1);
+      if (queueFlag) {
+        setQueueSongNum(queueSongNum + 1);
         setPlay(true);
       }
     }
@@ -157,6 +160,47 @@ export default function PlayerSection({
     setProgressMouseLeave(true);
   }
 
+  function handlePreviousSongClick() {
+    if (queueSongNum > 0 && queueFlag) {
+      setQueueSongNum(queueSongNum - 1);
+      setPlay(true);
+      setPreviousSongFlag(true);
+      setNextSongFlag(true);
+    }
+    else{
+      setPreviousSongFlag(false);
+      setTimeout(() => {
+        setPreviousSongFlag(true);
+      }, 2000);
+    }
+  }
+
+  function handleNextSongClick() {
+    if (queueSongNum < queueLength - 1 && queueFlag) {
+      setQueueSongNum(queueSongNum + 1);
+      setPlay(true);
+      setPreviousSongFlag(true);
+      setNextSongFlag(true);
+    }
+    else{
+      setNextSongFlag(false);
+      setTimeout(() => {
+        setNextSongFlag(true);
+      }, 2000);
+    }
+  }
+
+  // useEffect(() => {
+  //   if (queueSongNum === 0) {
+  //     setPreviousSongFlag(false);
+  //   } else if (queueSongNum === queueLength - 1) {
+  //     setNextSongFlag(false);
+  //   } else {
+  //     setPreviousSongFlag(true);
+  //     setNextSongFlag(true);
+  //   }
+  // }, [queueSongNum]);
+
   let backgroundColor;
   if (progressMouseEnter) {
     backgroundColor = "#1FDF64";
@@ -193,13 +237,27 @@ export default function PlayerSection({
               <source src={`/songs/${info.title}.mp3`} type="audio/mpeg" />
             </audio>
             <div className={styles.btns}>
-              <div className={`${styles.previousBtn} ${styles.nexprev}`}>
+              {previousSongFlag===false && queueFlag && (
+                <section
+                  className={`${styles.previousSongWarning} ${styles.warning}`}
+                >
+                  <h6>⏪ First track! Only forward!</h6>
+                </section>
+              )}
+              <div
+                className={`${styles.previousBtn} ${styles.nexprev}`}
+                style={
+                  !queueFlag
+                    ? { pointerEvents: "none" }
+                    : null
+                }
+              >
                 <Image
                   src="/leftNext.svg"
                   alt="previous"
                   width={22}
                   height={22}
-                  style={{ filter: "invert(100%)" }}
+                  onClick={handlePreviousSongClick}
                 />
               </div>
               <div
@@ -217,13 +275,25 @@ export default function PlayerSection({
                   style={!play ? { paddingLeft: "0.15rem" } : null}
                 />
               </div>
-              <div className={`${styles.nextBtn} ${styles.nexprev}`}>
+              {nextSongFlag===false && queueFlag && (
+                <section
+                  className={`${styles.nextSongWarning} ${styles.warning}`}
+                >
+                  <h6>🎶 Queue’s over! Next jam?</h6>
+                </section>
+              )}
+              <div
+                className={`${styles.nextBtn} ${styles.nexprev}`}
+                style={
+                  !queueFlag ? { pointerEvents: "none" } : null
+                }
+              >
                 <Image
                   src="/rightNext.svg"
                   alt="next"
                   width={22}
                   height={22}
-                  style={{ filter: "invert(100%)" }}
+                  onClick={handleNextSongClick}
                 />
               </div>
               <div className={styles.progressBarContainer}>

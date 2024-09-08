@@ -7,6 +7,7 @@ import LibSection from "@/components/libSection";
 import { useEffect, useState } from "react";
 import styles from "./content.module.css";
 import PlaylistSection from "./playlistSection";
+import Cookies from "js-cookie";
 
 export default function Content() {
   const [minLib, setMinLib] = useState(true);
@@ -76,6 +77,7 @@ export default function Content() {
     setMinInfo(!minInfo);
   }
   function getCurrentSongInfo(info) {
+    console.log('here');
     setCurrentPlaylistId(playlistId);
     setCurrentSongInfo(info);
     setDefaultSongRender(false);
@@ -95,6 +97,7 @@ export default function Content() {
   function getSearchedSongInfo(song) {
     setCurrentSongInfo(song);
     setDefaultSongRender(false);
+    setQueueFlag(false);
   }
   function getPauseFromPlaylistNavs(flag) {
     setPlaylistNavsPause(flag);
@@ -126,6 +129,9 @@ export default function Content() {
       setPlaylistNavsPause(true);
     }
   }, [queueSongsInfo,queueSongNum]);
+  useEffect(()=>{
+    queueSongsInfo&&Cookies.set("queueLength",queueSongsInfo.length,{expires:7});
+  },[queueSongsInfo])
   useEffect(() => {
     if (!playlistId) {
       setNavSectionFlag(true);
@@ -172,6 +178,7 @@ export default function Content() {
         getSearchSectionPause={getSearchSectionPause}
         queueFlag={queueFlag}
         setQueueSongNum={setQueueSongNum}
+        queueLength={queueSongsInfo?.length}
         queueSongNum={queueSongNum}
       />
       {!minInfo && (
